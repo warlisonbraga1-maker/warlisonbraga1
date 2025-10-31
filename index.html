@@ -63,7 +63,15 @@
     footer a{color:#fff;text-decoration:none;font-weight:bold;}
     footer a:hover{text-decoration:underline;}
     #loadingScreen {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: #ef8184;display: flex;align-items: center;justify-content: center;z-index: 4000;transition: opacity 0.5s ease;}
-    .loader {text-align: center; color: #fff;}
+    .loader {
+      text-align: center;
+      color: #fff;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
     .logo-text {font-size: 48px; font-weight: 600; letter-spacing: 3px; margin-bottom: 20px; opacity: 0; animation: fadeInUp 0.8s ease forwards;}
     .dots {display: flex; justify-content: center; gap: 8px;}
     .dots span {width: 12px; height: 12px; background: #fff; border-radius: 50%; display: inline-block; animation: pulse 1.4s infinite ease-in-out;}
@@ -88,8 +96,31 @@
     .cropper-actions button {flex: 1;min-width: 100px;font-weight: 600;}
     #croppedUrlOutput {width: 100%;padding: 8px;background: #00000066;color: #fff;border: 1px solid #ffffff44;border-radius: 8px;font-size: 11px;word-break: break-all;margin-top: 8px;display: none;}
     #cropStatus {font-weight: 600;margin-top: 5px;}
-    #siteCodeEditor {width:100%;height:300px;font-family:monospace;font-size:12px;background:#000;color:#0f0;padding:10px;border-radius:8px;border:1px solid #444;}
     @keyframes fadeInMsg { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    /* === CORREÇÃO: BOTÕES NO LOADING === */
+    #adminBtn,
+    #instaFloatBtn,
+    .products-wrapper,
+    .banner-container,
+    header,
+    footer,
+    [style*="text-align:center; margin:20px;"] {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+    }
+    body.loaded #adminBtn,
+    body.loaded #instaFloatBtn,
+    body.loaded .products-wrapper,
+    body.loaded .banner-container,
+    body.loaded header,
+    body.loaded footer,
+    body.loaded [style*="text-align:center; margin:20px;"] {
+      opacity: 1;
+      visibility: visible;
+    }
+
     @media(max-width:768px){
       .banner-slide img{height:200px;}
       .product{flex:0 0 220px;}
@@ -103,7 +134,6 @@
       #adminPassword { width: 100%; margin-right: 0; margin-bottom: 5px; }
       #togglePassword { width: 100%; }
       .cropper-actions { flex-direction: column; }
-      #siteCodeEditor {height:200px;}
     }
   </style>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -164,6 +194,23 @@
     </div>
     <button id="loginBtn">Entrar</button>
     <div id="adminContent" style="display:none;">
+      <!-- EDITOR DE CÓDIGO -->
+      <div style="margin:20px 0;padding:15px;background:#1e90ff22;border-radius:12px;">
+        <h3 style="color:#fff;margin:0 0 10px;">Editor de Código (HTML/CSS/JS)</h3>
+        <div style="display:flex;gap:5px;margin-bottom:10px;">
+          <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">Carregar Código Atual</button>
+          <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">TESTAR EM NOVA ABA</button>
+        </div>
+        <textarea id="codeEditor" placeholder="Cole ou edite o código aqui..." style="width:100%;height:300px;font-family:monospace;font-size:12px;background:#000;color:#0f0;padding:10px;border-radius:8px;border:1px solid #fff4;resize:vertical;"></textarea>
+        <div style="display:flex;gap:5px;margin-top:10px;">
+          <input type="text" id="newVersionNum" placeholder="Versão (ex: 1.2)" style="flex:1;">
+          <input type="text" id="newVersionName" placeholder="Nome da versão" style="flex:1;">
+        </div>
+        <textarea id="versionChanges" placeholder="O que mudou?" style="width:100%;height:50px;margin-top:5px;font-size:12px;"></textarea>
+        <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:10px;width:100%;">PUBLICAR NOVA VERSÃO</button>
+        <p id="codeStatus" style="margin:8px 0 0;font-size:13px;color:#ff0;"></p>
+      </div>
+
       <h3>Adicionar Produto</h3>
       <input type="text" id="productName" placeholder="Nome do Produto">
       <select id="productStatus">
@@ -205,24 +252,6 @@
       <button id="saveThemeBtn">Salvar Cores</button>
       <h3>Gerenciar Produtos</h3>
       <div id="adminProducts"></div>
-      <textarea id="siteCodeEditor" placeholder="Código do site aparecerá aqui..."></textarea>
-      <div style="margin-top:20px;padding:15px;background:#1e90ff22;border-radius:12px;">
-        <h3 style="color:#fff;margin:0 0 10px;">Gerenciar Versões</h3>
-        <div style="background:#fff1;color:#000;padding:10px;border-radius:8px;margin-bottom:10px;">
-          <strong>Versão Atual:</strong> <span id="currentVersionDisplay">v1.0</span>
-        </div>
-        <input type="text" id="newVersionNumber" placeholder="Ex: 1.1" style="width:80px;margin-right:5px;">
-        <input type="text" id="newVersionName" placeholder="Nome da versão" style="width:calc(100% - 90px);margin-bottom:5px;">
-        <textarea id="versionChanges" placeholder="O que mudou?" style="width:100%;height:60px;font-size:12px;"></textarea>
-        <div style="display:flex;gap:5px;margin-top:5px;">
-          <button id="publishVersionBtn" class="btn" style="background:#27ae60;flex:1;">Publicar</button>
-          <button id="testVersionBtn" class="btn" style="background:#9b59b6;flex:1;">TESTAR EM NOVA ABA</button>
-          <button id="loadCurrentBtn" class="btn" style="background:#1e90ff;flex:1;">Carregar Código</button>
-        </div>
-        <p id="versionStatus" style="margin:8px 0 0;font-size:13px;"></p>
-        <h4 style="margin:15px 0 8px;color:#fff;">Histórico</h4>
-        <div id="versionsList" style="max-height:250px;overflow-y:auto;"></div>
-      </div>
       <button id="logoutBtn" style="background:#e74c3c;margin-top:10px;">Sair</button>
     </div>
   </div>
@@ -243,14 +272,20 @@
     const db = firebase.firestore();
     const loadingScreen = document.getElementById('loadingScreen');
     let loaded = false;
+
+    // === CORREÇÃO: ATIVAR BOTÕES APÓS LOADING ===
     function hideLoading() {
       if (loaded) return;
       loaded = true;
       loadingScreen.style.opacity = '0';
-      setTimeout(() => loadingScreen.style.display = 'none', 500);
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        document.body.classList.add('loaded'); // Mostra tudo
+      }, 500);
     }
     setTimeout(hideLoading, 6000);
     loadingScreen.addEventListener('click', hideLoading);
+
     let theme = { bodyBg: '#e87474', headerBg: '#ef8184', buttonBg: '#1e90ff', adminBg: '#ef8184', disponivelBg: '#32CD32', sobpedidoBg: '#FF6347', sizeBtnBg: '#ffffff44', sizeBtnText: '#ffffff', productName: '#ffffff', productCardBg: '#ffffff22', closeBtnBg: '#1e90ff' };
     function applyTheme() {
       document.body.style.backgroundColor = theme.bodyBg;
@@ -279,6 +314,7 @@
     db.collection('config').doc('theme').onSnapshot(doc => { if (doc.exists) { theme = { ...theme, ...doc.data() }; applyTheme(); if (document.getElementById('adminContent').style.display === 'block') updateColorPickers(); } });
     function updateColorPickers() { Object.keys(theme).forEach(key => { const el = document.getElementById('color' + key.charAt(0).toUpperCase() + key.slice(1)); if (el) el.value = theme[key]; }); }
     document.getElementById('saveThemeBtn').onclick = async () => { Object.keys(theme).forEach(key => { const el = document.getElementById('color' + key.charAt(0).toUpperCase() + key.slice(1)); if (el) theme[key] = el.value; }); await db.collection('config').doc('theme').set(theme); alert('Cores salvas!'); applyTheme(); };
+
     let bannerImages = [];
     const bannerSlide = document.getElementById('bannerSlide');
     let bannerInterval;
@@ -297,6 +333,7 @@
       }
     }
     db.collection('banners').doc('current').onSnapshot(doc => { bannerImages = doc.exists && doc.data().urls?.length ? doc.data().urls : ["https://via.placeholder.com/1200x300/ef8184/ffffff?text=Nelma+Modas"]; renderBanner(); updateAdminBannersList(); });
+
     let productsData = [];
     const productList = document.getElementById('productList');
     const searchInput = document.getElementById('searchInput');
@@ -328,6 +365,7 @@
     db.collection('produtos').orderBy('nome').onSnapshot(snap => { productsData = snap.docs.map(doc => ({ ...doc.data(), _id: doc.id })); filterAndRender(); updateAdminProductsList(); hideLoading(); });
     searchInput.addEventListener('input', filterAndRender);
     statusFilter.addEventListener('change', filterAndRender);
+
     window.openDetailModal = function(id) {
       const p = productsData.find(x => x._id === id);
       if (!p) return;
@@ -343,6 +381,7 @@
     document.getElementById('detailMainImage').onclick = e => e.target.classList.toggle('zoomed');
     document.getElementById('prevProduct').onclick = () => productList.scrollBy({ left: -300, behavior: 'smooth' });
     document.getElementById('nextProduct').onclick = () => productList.scrollBy({ left: 300, behavior: 'smooth' });
+
     const adminBtn = document.getElementById('adminBtn');
     const adminPanel = document.getElementById('adminPanel');
     const adminContent = document.getElementById('adminContent');
@@ -350,9 +389,27 @@
     const adminPassword = document.getElementById('adminPassword');
     const logoutBtn = document.getElementById('logoutBtn');
     adminBtn.onclick = () => { adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block'; if (adminPanel.style.display === 'block') adminPassword.focus(); };
-    loginBtn.onclick = () => { if (adminPassword.value === 'braga240895') { adminContent.style.display = 'block'; loginBtn.style.display = 'none'; adminPassword.style.display = 'none'; document.getElementById('togglePassword').style.display = 'none'; updateAdminBannersList(); updateAdminProductsList(); updateColorPickers(); applyTheme(); initVersioningSystem(); } else { alert('Senha incorreta'); } };
+
+    // SENHA COM .trim()
+    loginBtn.onclick = () => {
+      const senha = adminPassword.value.trim();
+      if (senha === 'braga240895') {
+        adminContent.style.display = 'block';
+        loginBtn.style.display = 'none';
+        adminPassword.style.display = 'none';
+        document.getElementById('togglePassword').style.display = 'none';
+        updateAdminBannersList();
+        updateAdminProductsList();
+        updateColorPickers();
+        applyTheme();
+      } else {
+        alert('Senha incorreta');
+      }
+    };
+
     logoutBtn.onclick = () => { adminContent.style.display = 'none'; loginBtn.style.display = 'block'; adminPassword.style.display = 'block'; document.getElementById('togglePassword').style.display = 'block'; adminPassword.value = ''; };
     document.getElementById('togglePassword').onclick = () => { const p = document.getElementById('adminPassword'); const b = document.getElementById('togglePassword'); p.type = p.type === 'password' ? 'text' : 'password'; b.textContent = p.type === 'password' ? 'Mostrar' : 'Esconder'; };
+
     let cropper = null;
     const cropTool = document.getElementById('imageCropper');
     const openCropBtn = document.getElementById('openCropTool');
@@ -369,6 +426,7 @@
     cropBtn.onclick = () => { if (!cropper) return alert('Carregue uma imagem'); statusText.textContent = 'Cortando...'; statusText.style.color = '#ff0'; try { const canvas = cropper.getCroppedCanvas({ width: 600, height: 800, imageSmoothingEnabled: true, imageSmoothingQuality: 'high' }); const dataUrl = canvas.toDataURL('image/jpeg', 0.92); outputField.value = dataUrl; outputField.style.display = 'block'; copyBtn.style.display = 'block'; document.getElementById('mainImageURL').value = dataUrl; statusText.textContent = 'Corte concluído!'; statusText.style.color = '#0f0'; } catch (e) { statusText.textContent = 'Erro: ' + e.message; statusText.style.color = '#f00'; } };
     cancelBtn.onclick = () => { if (cropper) { cropper.destroy(); cropper = null; } cropImage.src = ''; outputField.style.display = 'none'; copyBtn.style.display = 'none'; outputField.value = ''; statusText.style.display = 'none'; };
     copyBtn.onclick = () => { outputField.select(); document.execCommand('copy'); alert('Copiado!'); };
+
     document.getElementById('addProductBtn').onclick = async () => {
       const nome = document.getElementById('productName').value.trim();
       const status = document.getElementById('productStatus').value;
@@ -405,97 +463,97 @@
     window.saveProduct = async (id) => { const nome = document.getElementById(`editName_${id}`).value.trim(); const status = document.getElementById(`editStatus_${id}`).value; const tamanhos = document.getElementById(`editSizes_${id}`).value.split(',').map(s => s.trim()).filter(Boolean); if (!nome) return alert('Nome obrigatório'); await db.collection('produtos').doc(id).update({ nome, status, tamanhos }); alert('Atualizado!'); };
     window.deleteProduct = async (id, nome) => { if (confirm(`Excluir "${nome}"?`)) await db.collection('produtos').doc(id).delete(); };
 
-    // === SISTEMA DE VERSIONAMENTO ===
-    const VERSION_COLLECTION = 'siteVersions';
-    let currentVersion = { id: null, number: '1.0', name: 'Lançamento', changes: 'Site inicial.' };
-    function initVersioningSystem() {
-      if (document.getElementById('adminContent').style.display !== 'block') return;
-      document.getElementById('loadCurrentBtn').onclick = () => { document.getElementById('siteCodeEditor').value = document.documentElement.outerHTML; showStatus('Código carregado!', 'green'); };
-      document.getElementById('publishVersionBtn').onclick = publishNewVersion;
-      document.getElementById('testVersionBtn').onclick = () => {
-        const code = document.getElementById('siteCodeEditor').value;
-        if (!code.includes('NELMA MODAS')) return alert('Carregue o código primeiro!');
-        const blob = new Blob([code], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
-        window.open(url, '_blank');
-        setTimeout(() => URL.revokeObjectURL(url), 60000);
-        showStatus('Teste aberto!', 'green');
-      };
-      loadVersions();
-    }
-    async function publishNewVersion() {
-      const num = document.getElementById('newVersionNumber').value.trim();
+    // === EDITOR DE CÓDIGO NO ADMIN ===
+    let currentSiteCode = '';
+    document.getElementById('loadCodeBtn').onclick = () => {
+      currentSiteCode = document.documentElement.outerHTML;
+      document.getElementById('codeEditor').value = currentSiteCode;
+      document.getElementById('codeStatus').textContent = 'Código carregado!';
+      document.getElementById('codeStatus').style.color = '#0f0';
+    };
+
+    document.getElementById('testCodeBtn').onclick = () => {
+      const code = document.getElementById('codeEditor').value;
+      if (!code.trim()) return alert('Código vazio');
+      const blob = new Blob([code], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      document.getElementById('codeStatus').textContent = 'Teste aberto!';
+      document.getElementById('codeStatus').style.color = '#0f0';
+    };
+
+    document.getElementById('publishCodeBtn').onclick = async () => {
+      const code = document.getElementById('codeEditor').value.trim();
+      const num = document.getElementById('newVersionNum').value.trim();
       const name = document.getElementById('newVersionName').value.trim();
       const changes = document.getElementById('versionChanges').value.trim();
-      const code = document.getElementById('siteCodeEditor').value.trim();
-      const status = document.getElementById('versionStatus');
-      if (!num || !name || !changes || !code) return showStatus('Preencha todos os campos!', 'red');
-      if (!code.includes('NELMA MODAS')) if (!confirm('Código parece inválido. Continuar?')) return;
-      showStatus('Publicando v' + num + '...', 'yellow');
+      const status = document.getElementById('codeStatus');
+
+      if (!code || !num || !name || !changes) {
+        status.textContent = 'Preencha todos os campos!';
+        status.style.color = '#f00';
+        return;
+      }
+
+      status.textContent = 'Publicando v' + num + '...';
+      status.style.color = '#ff0';
+
       try {
-        await db.collection('siteBackups').add({ html: document.documentElement.outerHTML, version: currentVersion.number, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
-        const versionRef = await db.collection(VERSION_COLLECTION).add({ number: num, name: name, changes: changes, html: code, publishedAt: firebase.firestore.FieldValue.serverTimestamp() });
-        await db.collection('config').doc('currentVersion').set({ id: versionRef.id, number: num, name: name, changes: changes });
-        showStatus(`v${num} publicada!`, 'green'); clearVersionInputs(); loadVersions();
-        setTimeout(() => { if (confirm(`v${num} publicada! Recarregar?`)) location.reload(); }, 1500);
-      } catch (e) { showStatus('Erro: ' + e.message, 'red'); }
-    }
-    function clearVersionInputs() { document.getElementById('newVersionNumber').value = ''; document.getElementById('newVersionName').value = ''; document.getElementById('versionChanges').value = ''; }
-    function showStatus(msg, color) { const el = document.getElementById('versionStatus'); el.textContent = msg; el.style.color = color === 'green' ? '#0f0' : color === 'red' ? '#f00' : '#ff0'; }
-    async function loadVersions() {
-      const list = document.getElementById('versionsList'); list.innerHTML = '<p style="color:#aaa;font-size:12px;">Carregando...</p>';
-      try {
-        const snap = await db.collection(VERSION_COLLECTION).orderBy('publishedAt', 'desc').get();
-        const versions = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        const currentSnap = await db.collection('config').doc('currentVersion').get();
-        const current = currentSnap.exists ? currentSnap.data() : null;
-        let html = '';
-        for (const v of versions) {
-          const date = v.publishedAt?.toDate?.() || new Date();
-          const isCurrent = current && v.id === current.id;
-          html += `<div style="background:${isCurrent ? '#1e90ff33' : '#ffffff11'};padding:10px;margin:5px 0;border-radius:8px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div><strong style="color:${isCurrent ? '#1e90ff' : '#fff'};">v${v.number}</strong> <small style="color:#aaa;">- ${v.name}</small></div>
-              <small style="color:#aaa;">${date.toLocaleDateString()}</small>
-            </div>
-            <small style="color:#ccc;display:block;margin:5px 0;">${v.changes}</small>
-            <button onclick="revertTo('${v.id}', '${v.number}')" style="background:${isCurrent ? '#666' : '#e74c3c'};color:#fff;border:none;padding:4px 8px;border-radius:5px;font-size:11px;">
-              ${isCurrent ? 'Atual' : 'Reverter'}
-            </button>
-          </div>`;
-        }
-        list.innerHTML = html || '<p style="color:#aaa;">Nenhuma versão</p>';
-        if (current) { document.getElementById('currentVersionDisplay').textContent = `v${current.number}`; currentVersion = current; document.getElementById('footerVersion').innerHTML = ` | <small>Versão ${current.number}</small>`; }
-      } catch (e) { list.innerHTML = '<p style="color:#f00;">Erro</p>'; }
-    }
-    window.revertTo = async (id, num) => {
-      if (!confirm(`Reverter para v${num}?`)) return;
-      try {
-        const snap = await db.collection(VERSION_COLLECTION).doc(id).get();
-        document.getElementById('siteCodeEditor').value = snap.data().html;
-        showStatus(`v${num} carregada! Publique para ativar.`, 'green');
-      } catch (e) { showStatus('Erro', 'red'); }
+        const versionRef = await db.collection('siteVersions').add({
+          number: num,
+          name: name,
+          changes: changes,
+          html: code,
+          publishedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        await db.collection('config').doc('currentVersion').set({
+          id: versionRef.id,
+          number: num,
+          name: name,
+          changes: changes
+        });
+
+        status.textContent = `v${num} publicada! Recarregue o site.`;
+        status.style.color = '#0f0';
+
+        document.getElementById('newVersionNum').value = '';
+        document.getElementById('newVersionName').value = '';
+        document.getElementById('versionChanges').value = '';
+
+        setTimeout(() => {
+          if (confirm(`v${num} publicada! Recarregar agora?`)) {
+            localStorage.setItem('siteVersion', num);
+            location.reload();
+          }
+        }, 1000);
+      } catch (e) {
+        status.textContent = 'Erro: ' + e.message;
+        status.style.color = '#f00';
+      }
     };
-    db.collection('config').doc('currentVersion').onSnapshot(doc => {
+
+    // === CARREGA VERSÃO DO FIRESTORE ===
+    db.collection('config').doc('currentVersion').onSnapshot(async doc => {
       if (doc.exists) {
         const data = doc.data();
         const saved = localStorage.getItem('siteVersion');
         if (saved !== data.number) {
-          const msg = `Nova versão v${data.number}!\n\n${data.name}\n${data.changes}\n\nRecarregar?`;
-          if (confirm(msg)) { localStorage.setItem('siteVersion', data.number); location.reload(); }
+          const versionDoc = await db.collection('siteVersions').doc(data.id).get();
+          if (versionDoc.exists && versionDoc.data().html) {
+            const msg = `Nova versão v${data.number}!\n\n${data.name}\n${data.changes}\n\nRecarregar?`;
+            if (confirm(msg)) {
+              document.open();
+              document.write(versionDoc.data().html);
+              document.close();
+              localStorage.setItem('siteVersion', data.number);
+            }
+          }
         }
       }
     });
-    db.collection('config').doc('currentVersion').get().then(doc => {
-      if (doc.exists) {
-        const data = doc.data();
-        currentVersion = data;
-        localStorage.setItem('siteVersion', data.number);
-        document.getElementById('footerVersion').innerHTML = ` | <small>Versão ${data.number}</small>`;
-      }
-    });
-    const originalLogin = loginBtn.onclick;
-    loginBtn.onclick = async () => { await originalLogin(); setTimeout(() => { initVersioningSystem(); }, 500); };
+
     applyTheme();
   </script>
 </body>
