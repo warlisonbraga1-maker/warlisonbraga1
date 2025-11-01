@@ -1204,28 +1204,42 @@
         <!-- Aba Código -->
         <div id="tab-codigo" class="admin-tab-content">
           <h4>💻 Editor de Código</h4>
-          <div style="margin:25px 0;padding:20px;background:#1e90ff22;border-radius:12px;">
-            <div style="display:flex;gap:8px;margin-bottom:12px;">
-              <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">
-                <i class="fas fa-code"></i> Carregar Código
-              </button>
-              <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">
-                <i class="fas fa-vial"></i> Testar Código
-              </button>
-            </div>
-            <textarea id="codeEditor" placeholder="Cole ou edite o código HTML/CSS/JS aqui..." 
-                      style="width:100%;height:250px;font-family:'Courier New',monospace;font-size:13px;background:#000;color:#0f0;padding:12px;border-radius:8px;border:2px solid #fff4;resize:vertical;"></textarea>
-            <div style="display:flex;gap:8px;margin-top:12px;">
-              <input type="text" id="newVersionNum" placeholder="Versão (ex: 2.1)" style="flex:1;">
-              <input type="text" id="newVersionName" placeholder="Nome da versão" style="flex:1;">
-            </div>
-            <textarea id="versionChanges" placeholder="Descreva as mudanças realizadas..." 
-                      style="width:100%;height:60px;margin-top:8px;font-size:12px;padding:10px;border-radius:8px;border:2px solid #ffffff44;background:#ffffff22;color:#fff;"></textarea>
-            <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:12px;width:100%;">
-              <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSÃO
+          
+          <!-- Configurações do GitHub -->
+          <div style="margin:15px 0;padding:15px;background:#1e90ff22;border-radius:12px;border:2px solid #1e90ff44;">
+            <h5 style="margin-bottom:10px;">🔧 Configurações do GitHub</h5>
+            <input type="text" id="githubRepoOwner" placeholder="Usuário GitHub (ex: seu-usuario)" style="margin-bottom:8px;">
+            <input type="text" id="githubRepoName" placeholder="Repositório (ex: nelma-modas)" style="margin-bottom:8px;">
+            <input type="text" id="githubBranch" placeholder="Branch (ex: main)" value="main" style="margin-bottom:8px;">
+            <input type="password" id="githubToken" placeholder="Token GitHub (obrigatório)" style="margin-bottom:8px;">
+            <button id="saveGitHubConfig" class="btn" style="background:#333;width:100%;margin-bottom:8px;">
+              <i class="fab fa-github"></i> Salvar Configurações
             </button>
-            <p id="codeStatus" style="margin:12px 0 0;font-size:13px;color:#ff0;text-align:center;"></p>
+            <button id="configHelpBtn" class="btn" style="background:#9b59b6;width:100%;">
+              <i class="fas fa-question-circle"></i> Como Configurar
+            </button>
           </div>
+          
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">
+              <i class="fas fa-code"></i> Carregar Código
+            </button>
+            <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">
+              <i class="fas fa-vial"></i> Testar Código
+            </button>
+          </div>
+          <textarea id="codeEditor" placeholder="Cole ou edite o código HTML/CSS/JS aqui..." 
+                    style="width:100%;height:250px;font-family:'Courier New',monospace;font-size:13px;background:#000;color:#0f0;padding:12px;border-radius:8px;border:2px solid #fff4;resize:vertical;"></textarea>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <input type="text" id="newVersionNum" placeholder="Versão (ex: 2.1)" style="flex:1;">
+            <input type="text" id="newVersionName" placeholder="Nome da versão" style="flex:1;">
+          </div>
+          <textarea id="versionChanges" placeholder="Descreva as mudanças realizadas..." 
+                    style="width:100%;height:60px;margin-top:8px;font-size:12px;padding:10px;border-radius:8px;border:2px solid #ffffff44;background:#ffffff22;color:#fff;"></textarea>
+          <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:12px;width:100%;">
+            <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSÃO
+          </button>
+          <p id="codeStatus" style="margin:12px 0 0;font-size:13px;color:#ff0;text-align:center;"></p>
         </div>
 
         <button id="logoutBtn" style="background:#e74c3c;margin-top:20px;width:100%;">
@@ -1282,6 +1296,14 @@
       selectedSizeColor: '#1e90ff' // NOVO - Cor padrão para tamanho selecionado
     };
 
+    // 🔧 CONFIGURAÇÃO DO GITHUB - VALORES PADRÃO
+    let githubConfig = {
+      repoOwner: '',
+      repoName: '',
+      branch: 'main',
+      token: ''
+    };
+
     // 🚀 INICIALIZAÇÃO DA APLICAÇÃO
     document.addEventListener('DOMContentLoaded', function() {
       console.log('📄 DOM Carregado - Iniciando aplicação...');
@@ -1331,6 +1353,9 @@
       
       // Carregar banners
       loadBanners();
+      
+      // Carregar configurações do GitHub
+      loadGitHubConfig();
     }
 
     // 🎨 CARREGAR TEMA
@@ -1348,6 +1373,36 @@
           console.error('Erro ao carregar tema:', error);
         }
       );
+    }
+
+    // 🔧 CARREGAR CONFIGURAÇÕES DO GITHUB
+    function loadGitHubConfig() {
+      if (!db) return;
+      
+      db.collection('config').doc('github').onSnapshot(
+        (doc) => {
+          if (doc.exists) {
+            githubConfig = { ...githubConfig, ...doc.data() };
+            updateGitHubConfigFields();
+          }
+        },
+        (error) => {
+          console.error('Erro ao carregar configurações GitHub:', error);
+        }
+      );
+    }
+
+    // 🔧 ATUALIZAR CAMPOS DE CONFIGURAÇÃO DO GITHUB
+    function updateGitHubConfigFields() {
+      const repoOwner = document.getElementById('githubRepoOwner');
+      const repoName = document.getElementById('githubRepoName');
+      const branch = document.getElementById('githubBranch');
+      const token = document.getElementById('githubToken');
+      
+      if (repoOwner) repoOwner.value = githubConfig.repoOwner || '';
+      if (repoName) repoName.value = githubConfig.repoName || '';
+      if (branch) branch.value = githubConfig.branch || 'main';
+      if (token) token.value = githubConfig.token || '';
     }
 
     // 🎨 APLICAR TEMA - ATUALIZADA COM NOVA COR
@@ -1832,6 +1887,17 @@
         });
       }
       
+      // Configurações do GitHub
+      const saveGitHubConfigBtn = document.getElementById('saveGitHubConfig');
+      if (saveGitHubConfigBtn) {
+        saveGitHubConfigBtn.onclick = saveGitHubConfig;
+      }
+      
+      const configHelpBtn = document.getElementById('configHelpBtn');
+      if (configHelpBtn) {
+        configHelpBtn.onclick = showGitHubConfigInstructions;
+      }
+      
       // Fechar modal ao clicar fora
       window.onclick = function(event) {
         const modal = document.getElementById('detailModal');
@@ -1844,6 +1910,152 @@
           adminPanel.style.display = 'none';
         }
       };
+    }
+
+    // 🔧 FUNÇÕES DO GITHUB
+
+    // Salvar configurações do GitHub
+    async function saveGitHubConfig() {
+      const repoOwner = document.getElementById('githubRepoOwner');
+      const repoName = document.getElementById('githubRepoName');
+      const branch = document.getElementById('githubBranch');
+      const token = document.getElementById('githubToken');
+      
+      if (!repoOwner || !repoName || !branch || !token) return;
+      
+      const newConfig = {
+        repoOwner: repoOwner.value.trim(),
+        repoName: repoName.value.trim(),
+        branch: branch.value.trim() || 'main',
+        token: token.value.trim()
+      };
+      
+      if (!newConfig.repoOwner || !newConfig.repoName || !newConfig.token) {
+        alert('❌ Preencha todos os campos obrigatórios do GitHub');
+        return;
+      }
+      
+      if (!db) {
+        alert('❌ Erro de conexão. Tente novamente.');
+        return;
+      }
+      
+      try {
+        await db.collection('config').doc('github').set(newConfig);
+        githubConfig = newConfig;
+        alert('✅ Configurações do GitHub salvas com sucesso!');
+      } catch (error) {
+        alert('❌ Erro ao salvar configurações: ' + error.message);
+      }
+    }
+
+    // 🔄 SISTEMA DE ATUALIZAÇÃO GITHUB + NETLIFY
+    async function publishToGitHub(versionData, htmlContent) {
+      const statusElement = document.getElementById('codeStatus');
+      
+      // Verificar se as configurações estão completas
+      if (!githubConfig.repoOwner || !githubConfig.repoName || !githubConfig.token) {
+        statusElement.textContent = '❌ Configure primeiro as credenciais do GitHub';
+        statusElement.style.color = '#f00';
+        return false;
+      }
+      
+      try {
+        statusElement.textContent = '🔄 Conectando com GitHub...';
+        statusElement.style.color = '#ff0';
+
+        const { repoOwner, repoName, branch, token } = githubConfig;
+        const filePath = 'index.html';
+        const commitMessage = `🚀 Deploy automático - Versão ${versionData.number}: ${versionData.name}`;
+
+        // Obter SHA do arquivo atual (se existir)
+        let currentSha = null;
+        try {
+          const getFileUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
+          const fileResponse = await fetch(getFileUrl, {
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (fileResponse.ok) {
+            const fileData = await fileResponse.json();
+            currentSha = fileData.sha;
+          }
+        } catch (error) {
+          console.log('Arquivo não existe ou é a primeira publicação');
+        }
+
+        // Preparar dados para upload
+        const content = btoa(unescape(encodeURIComponent(htmlContent)));
+        
+        const uploadData = {
+          message: commitMessage,
+          content: content,
+          branch: branch
+        };
+
+        if (currentSha) {
+          uploadData.sha = currentSha;
+        }
+
+        // Fazer upload
+        const uploadUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+        
+        const uploadResponse = await fetch(uploadUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify(uploadData)
+        });
+
+        if (!uploadResponse.ok) {
+          const errorData = await uploadResponse.json();
+          throw new Error(`GitHub API: ${errorData.message || 'Erro desconhecido'}`);
+        }
+
+        statusElement.textContent = '✅ Código publicado no GitHub! Netlify iniciará deploy automaticamente...';
+        statusElement.style.color = '#0f0';
+
+        return true;
+
+      } catch (error) {
+        console.error('Erro na publicação:', error);
+        statusElement.textContent = `❌ Erro: ${error.message}`;
+        statusElement.style.color = '#f00';
+        return false;
+      }
+    }
+
+    // 📋 INSTRUÇÕES DE CONFIGURAÇÃO DO GITHUB
+    function showGitHubConfigInstructions() {
+      const instructions = `
+🎯 COMO CONFIGURAR O DEPLOY AUTOMÁTICO:
+
+1. 🔧 CONFIGURAÇÃO DO GITHUB:
+   • Crie um repositório no GitHub
+   • Vá em Settings > Tokens (Classic)
+   • Gere um token com permissão "repo"
+   • Cole o token no campo acima
+
+2. 🌐 CONFIGURAÇÃO DO NETLIFY:
+   • Acesse netlify.com
+   • "Add new site" → "Import from Git"
+   • Conecte com seu repositório GitHub
+   • Deploy automático estará ativo!
+
+3. 🚀 FUNCIONAMENTO:
+   • Ao publicar uma versão, o código vai para GitHub
+   • Netlify detecta mudanças e faz deploy
+   • Site atualizado em 1-2 minutos
+
+⚠️  MANTENHA SEU TOKEN SEGURO!
+      `;
+      
+      alert(instructions);
     }
 
     // 🎯 FUNÇÕES GLOBAIS
@@ -2202,22 +2414,36 @@
             changes: changes
           });
           
-          if (codeStatus) {
-            codeStatus.textContent = `✅ Versão ${num} publicada com sucesso!`;
-            codeStatus.style.color = '#0f0';
-          }
+          // 🆕 ADICIONE ESTA PARTE PARA PUBLICAR NO GITHUB
+          const versionData = {
+            number: num,
+            name: name,
+            changes: changes
+          };
           
-          // Limpar campos
-          newVersionNum.value = '';
-          newVersionName.value = '';
-          versionChanges.value = '';
+          const publishSuccess = await publishToGitHub(versionData, code);
           
-          setTimeout(() => {
-            if (confirm(`🎉 Versão ${num} publicada com sucesso!\n\nDeseja recarregar o site agora?`)) {
-              localStorage.setItem('siteVersion', num);
-              location.reload();
+          if (publishSuccess) {
+            if (codeStatus) {
+              codeStatus.textContent = `✅ Versão ${num} publicada! Deploy em andamento...`;
+              codeStatus.style.color = '#0f0';
             }
-          }, 1000);
+            
+            // Limpar campos
+            newVersionNum.value = '';
+            newVersionName.value = '';
+            versionChanges.value = '';
+            
+            setTimeout(() => {
+              if (confirm(`🎉 Versão ${num} publicada com sucesso!\n\nGitHub atualizado e Netlify iniciará o deploy automaticamente.\n\nDeseja recarregar o site após o deploy?`)) {
+                localStorage.setItem('siteVersion', num);
+                // Não recarregar imediatamente - aguardar deploy
+                setTimeout(() => {
+                  location.reload();
+                }, 120000); // 2 minutos para o deploy
+              }
+            }, 1000);
+          }
           
         } catch (e) {
           if (codeStatus) {
