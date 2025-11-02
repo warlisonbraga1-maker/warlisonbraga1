@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
 
   <style>
-    /* === VARIÁVEIS DE CORES - DESIGN SYSTEM === */
+    /* === VARIAVEIS DE CORES - DESIGN SYSTEM === */
     :root {
       --primary-color: #e87474;
       --secondary-color: #ef8184;
@@ -30,8 +30,7 @@
       --shadow: 0 4px 12px rgba(0,0,0,0.15);
       --border-radius: 16px;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --backdrop: blur(10px);
-      --selected-size-color: #1e90ff; /* NOVA VARIÁVEL PARA O TAMANHO SELECIONADO */
+      --selected-size-color: #1e90ff;
     }
 
     /* === RESET E ESTILOS GLOBAIS === */
@@ -104,7 +103,7 @@
       40% { transform: scale(1.4); opacity: 1; }
     }
 
-    /* === CONTEÚDO PRINCIPAL === */
+    /* === CONTEUDO PRINCIPAL === */
     .main-content {
       opacity: 0;
       visibility: hidden;
@@ -132,7 +131,6 @@
       font-weight: 700;
       letter-spacing: 2px;
       transition: var(--transition);
-      backdrop-filter: var(--backdrop);
       border-bottom: 3px solid #ffffff22;
     }
 
@@ -165,7 +163,7 @@
       object-fit: cover;
     }
 
-    /* Barra de Busca e Filtros - CORRIGIDA */
+    /* Barra de Busca e Filtros */
     .search-filters {
       text-align: center;
       margin: 30px;
@@ -196,7 +194,7 @@
       color: #666666;
     }
 
-    /* Estilo para as opções do select */
+    /* Estilo para as opcoes do select */
     .search-filters select option {
       background: #ffffff;
       color: #333333;
@@ -225,7 +223,6 @@
       position: relative;
       opacity: 0;
       transform: translateY(30px) scale(0.95);
-      backdrop-filter: var(--backdrop);
       border: 1px solid #ffffff15;
       box-shadow: var(--shadow);
     }
@@ -311,7 +308,7 @@
       color: #000;
     }
 
-    /* Tamanhos - CORREÇÃO APLICADA */
+    /* Tamanhos */
     .size-options {
       display: flex;
       justify-content: center;
@@ -344,7 +341,7 @@
       box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3) !important;
     }
 
-    /* Botões */
+    /* Botoes */
     .btns {
       display: flex;
       justify-content: center;
@@ -395,7 +392,7 @@
       box-shadow: 0 8px 20px rgba(155, 89, 182, 0.4) !important;
     }
 
-    /* Navegação de Produtos */
+    /* Navegacao de Produtos */
     .product-nav {
       display: flex;
       justify-content: center;
@@ -432,7 +429,6 @@
       justify-content: center;
       align-items: center;
       z-index: 2000;
-      backdrop-filter: blur(5px);
     }
 
     .modal-content {
@@ -490,7 +486,7 @@
       cursor: zoom-out;
     }
 
-    /* Botões Flutuantes */
+    /* Botoes Flutuantes */
     #adminBtn {
       position: fixed;
       bottom: 30px;
@@ -555,7 +551,6 @@
       overflow-y: auto;
       z-index: 3000;
       box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-      backdrop-filter: var(--backdrop);
       border: 1px solid #ffffff22;
     }
 
@@ -602,7 +597,6 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
-      backdrop-filter: var(--backdrop);
     }
 
     .admin-product input, .admin-product select {
@@ -645,7 +639,6 @@
       border-radius: 12px;
       display: none;
       border: 2px solid #ffffff44;
-      backdrop-filter: var(--backdrop);
     }
 
     .cropper-container {
@@ -698,7 +691,6 @@
       margin: 50px 30px;
       border-radius: var(--border-radius);
       text-align: center;
-      backdrop-filter: var(--backdrop);
       border: 1px solid #ffffff15;
       box-shadow: var(--shadow);
     }
@@ -759,7 +751,6 @@
       color: var(--text-primary);
       margin-top: 40px;
       transition: var(--transition);
-      backdrop-filter: var(--backdrop);
       border-top: 3px solid #ffffff22;
     }
 
@@ -828,7 +819,7 @@
       }
     }
 
-    /* Modo Escuro Automático */
+    /* Modo Escuro Automatico */
     @media (prefers-color-scheme: dark) {
       :root {
         --primary-color: #c25a5a;
@@ -872,9 +863,7 @@
       display: block;
     }
 
-    /* CORREÇÕES APLICADAS */
-
-    /* 1. CORREÇÃO DO TAMANHO DA LUPA/MOSTRAR SENHA */
+    /* CORRECOES APLICADAS */
     .password-container button {
       font-size: 16px !important;
       padding: 12px 15px !important;
@@ -883,7 +872,6 @@
       flex-shrink: 0;
     }
 
-    /* 2. MELHORIAS NA PALETA DE CORES DO PAINEL ADMIN */
     .color-picker-group {
       margin-bottom: 15px;
     }
@@ -911,7 +899,6 @@
       transform: scale(1.05);
     }
 
-    /* Layout melhorado para os seletores de cor */
     .color-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -919,7 +906,6 @@
       margin-bottom: 20px;
     }
 
-    /* MELHORIAS NO BOTÃO DE MOSTRAR/ESCONDER SENHA */
     #togglePassword {
       background: var(--accent-color) !important;
       color: white !important;
@@ -941,7 +927,6 @@
       transform: translateY(-2px) !important;
     }
 
-    /* Mensagens da Newsletter */
     .newsletter-message {
       margin-top: 15px;
       padding: 12px 15px;
@@ -972,6 +957,41 @@
     .password-container input {
       flex: 1;
     }
+
+    /* ESTILOS PARA A BUSCA NO EDITOR DE CÓDIGO */
+    #codeSearchInput:focus {
+      outline: none;
+      border-color: var(--accent-color) !important;
+      background: #111 !important;
+    }
+
+    .search-match {
+      background-color: #ffeb3b !important;
+      color: #000 !important;
+      padding: 2px 0;
+    }
+
+    .current-search-match {
+      background-color: #ff9800 !important;
+      color: #000 !important;
+      font-weight: bold;
+    }
+
+    /* Dicas de atalhos de teclado */
+    .search-shortcuts {
+      font-size: 11px;
+      color: #888;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .search-shortcuts kbd {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      border: 1px solid #555;
+    }
   </style>
 </head>
 <body>
@@ -982,11 +1002,11 @@
       <div class="dots">
         <span></span><span></span><span></span>
       </div>
-      <p style="margin-top: 20px; font-size: 16px; opacity: 0.8;">Carregando nossa coleção exclusiva...</p>
+      <p style="margin-top: 20px; font-size: 16px; opacity: 0.8;">Carregando nossa colecao exclusiva...</p>
     </div>
   </div>
 
-  <!-- CONTEÚDO PRINCIPAL -->
+  <!-- CONTEUDO PRINCIPAL -->
   <div class="main-content" id="mainContent">
     <header>
       NELMA MODAS OFICIAL
@@ -997,20 +1017,20 @@
       <div class="banner-slide" id="bannerSlide"></div>
     </div>
 
-    <!-- Barra de Busca e Filtros - CORRIGIDA -->
+    <!-- Barra de Busca e Filtros -->
     <div class="search-filters">
-      <input type="text" id="searchInput" placeholder="🔍 Buscar produtos...">
+      <input type="text" id="searchInput" placeholder="Buscar produtos...">
       <select id="statusFilter">
         <option value="">Todos os status</option>
-        <option value="disponivel">Disponível</option>
+        <option value="disponivel">Disponivel</option>
         <option value="sobpedido">Sob Pedido</option>
-        <option value="promocao">Promoção</option>
+        <option value="promocao">Promocao</option>
       </select>
       <select id="categoryFilter">
         <option value="">Todas categorias</option>
         <option value="vestidos">Vestidos</option>
         <option value="blusas">Blusas</option>
-        <option value="calcas">Calças</option>
+        <option value="calcas">Calcas</option>
         <option value="saias">Saias</option>
       </select>
     </div>
@@ -1019,15 +1039,15 @@
     <div class="products-wrapper">
       <div class="products" id="productList"></div>
       <div class="product-nav">
-        <button id="prevProduct">⬅️ Anterior</button>
-        <button id="nextProduct">Próximo ➡️</button>
+        <button id="prevProduct">Anterior</button>
+        <button id="nextProduct">Proximo</button>
       </div>
     </div>
 
     <!-- Newsletter -->
     <div class="newsletter">
-      <h3>💌 Fique por Dentro das Novidades</h3>
-      <p>Cadastre-se para receber lançamentos exclusivos, promoções especiais e dicas de moda diretamente no seu e-mail</p>
+      <h3>Fique por Dentro das Novidades</h3>
+      <p>Cadastre-se para receber lancamentos exclusivos, promocoes especiais e dicas de moda diretamente no seu e-mail</p>
       <div class="newsletter-form">
         <input type="email" id="newsletterEmail" placeholder="Seu melhor e-mail">
         <button class="btn" onclick="cadastrarNewsletter()">
@@ -1055,7 +1075,7 @@
       </div>
     </div>
 
-    <!-- Botões Flutuantes -->
+    <!-- Botoes Flutuantes -->
     <button id="adminBtn" title="Painel Administrativo">
       <i class="fas fa-cog"></i>
     </button>
@@ -1066,12 +1086,12 @@
 
     <!-- Painel Administrativo -->
     <div id="adminPanel">
-      <h3 style="text-align: center; margin-bottom: 20px;">🔧 Painel Administrativo</h3>
+      <h3 style="text-align: center; margin-bottom: 20px;">Painel Administrativo</h3>
       
       <div id="adminLogin">
         <div class="password-container">
           <input type="password" id="adminPassword" placeholder="Senha de administrador">
-          <button type="button" id="togglePassword">👁️ Mostrar</button>
+          <button type="button" id="togglePassword">Mostrar</button>
         </div>
         <button id="loginBtn" style="background: var(--accent-color);">
           <i class="fas fa-sign-in-alt"></i> Entrar
@@ -1081,27 +1101,27 @@
       <div id="adminContent" style="display:none;">
         <!-- Sistema de Abas -->
         <div class="admin-tabs">
-          <button class="admin-tab active" data-tab="produtos">📦 Produtos</button>
-          <button class="admin-tab" data-tab="cores">🎨 Cores</button>
-          <button class="admin-tab" data-tab="banners">🖼️ Banners</button>
-          <button class="admin-tab" data-tab="codigo">💻 Código</button>
+          <button class="admin-tab active" data-tab="produtos">Produtos</button>
+          <button class="admin-tab" data-tab="cores">Cores</button>
+          <button class="admin-tab" data-tab="banners">Banners</button>
+          <button class="admin-tab" data-tab="codigo">Codigo</button>
         </div>
 
         <!-- Aba Produtos -->
         <div id="tab-produtos" class="admin-tab-content active">
-          <h4>📦 Adicionar Produto</h4>
+          <h4>Adicionar Produto</h4>
           <input type="text" id="productName" placeholder="Nome do Produto">
           <select id="productStatus">
-            <option value="disponivel">🟢 Disponível</option>
-            <option value="sobpedido">🟡 Sob Pedido</option>
-            <option value="promocao">🟣 Promoção</option>
+            <option value="disponivel">Disponivel</option>
+            <option value="sobpedido">Sob Pedido</option>
+            <option value="promocao">Promocao</option>
           </select>
           <input type="text" id="productSizes" placeholder="Tamanhos (P, M, G, GG)">
           <input type="text" id="mainImageURL" placeholder="URL da Imagem Principal">
           
           <!-- Cortador de Imagens -->
           <div class="crop-image-cropper" id="imageCropper">
-            <p style="margin-bottom: 15px; font-weight: 600;">✂️ Cortador de Imagens (Proporção 3:4)</p>
+            <p style="margin-bottom: 15px; font-weight: 600;">Cortador de Imagens (Proporcao 3:4)</p>
             <input type="text" id="cropImageInput" placeholder="Cole a URL da imagem para cortar" style="margin-bottom:10px;">
             <button type="button" id="loadCropImage" class="btn" style="background:#27ae60;margin-bottom:10px;width:100%;">
               <i class="fas fa-download"></i> Carregar Imagem
@@ -1117,7 +1137,7 @@
                 <i class="fas fa-times"></i> Cancelar
               </button>
             </div>
-            <input type="text" id="croppedUrlOutput" placeholder="URL da imagem cortada aparecerá aqui" readonly>
+            <input type="text" id="croppedUrlOutput" placeholder="URL da imagem cortada aparecera aqui" readonly>
             <button type="button" id="copyCroppedUrl" class="btn" style="background:#27ae60;margin-top:8px;display:none;width:100%;">
               <i class="fas fa-copy"></i> Copiar URL
             </button>
@@ -1128,29 +1148,29 @@
             <i class="fas fa-crop-alt"></i> Abrir Ferramenta de Corte
           </button>
           
-          <input type="text" id="detailImagesURL" placeholder="URLs das imagens de detalhe (separar por vírgula)">
+          <input type="text" id="detailImagesURL" placeholder="URLs das imagens de detalhe (separar por virgula)">
           <button id="addProductBtn" style="background:#27ae60;">
             <i class="fas fa-plus"></i> Adicionar Produto
           </button>
 
-          <h4 style="margin-top: 25px;">📋 Gerenciar Produtos</h4>
+          <h4 style="margin-top: 25px;">Gerenciar Produtos</h4>
           <div id="adminProducts"></div>
         </div>
 
-        <!-- Aba Cores - ATUALIZADA COM NOVO SELETOR -->
+        <!-- Aba Cores -->
         <div id="tab-cores" class="admin-tab-content">
-          <h4>🎨 Personalizar Cores do Site</h4>
+          <h4>Personalizar Cores do Site</h4>
           <div class="color-grid">
             <div class="color-picker-group">
               <label>Fundo do Site</label>
               <input type="color" id="colorBodyBg" value="#e87474">
             </div>
             <div class="color-picker-group">
-              <label>Cabeçalho</label>
+              <label>Cabecalho</label>
               <input type="color" id="colorHeaderBg" value="#ef8184">
             </div>
             <div class="color-picker-group">
-              <label>Botões</label>
+              <label>Botoes</label>
               <input type="color" id="colorButtonBg" value="#1e90ff">
             </div>
             <div class="color-picker-group">
@@ -1162,14 +1182,13 @@
               <input type="color" id="colorCardBg" value="#ffffff22">
             </div>
             <div class="color-picker-group">
-              <label>Disponível</label>
+              <label>Disponivel</label>
               <input type="color" id="colorDisponivelBg" value="#32CD32">
             </div>
             <div class="color-picker-group">
               <label>Sob Pedido</label>
               <input type="color" id="colorSobpedidoBg" value="#FF6347">
             </div>
-            <!-- NOVO SELETOR PARA A COR DO TAMANHO SELECIONADO -->
             <div class="color-picker-group">
               <label>Tamanho Selecionado</label>
               <input type="color" id="colorSelectedSize" value="#1e90ff">
@@ -1180,20 +1199,20 @@
           </button>
 
           <div style="margin-top: 25px; padding: 15px; background: #ffffff22; border-radius: 12px;">
-            <h5>💡 Dicas de Cores</h5>
+            <h5>Dicas de Cores</h5>
             <p style="font-size: 13px; margin: 0 0 10px 0;">
-              • <strong>Tamanho Selecionado</strong>: Define a cor quando um tamanho é clicado na grade de produtos
+              • <strong>Tamanho Selecionado</strong>: Define a cor quando um tamanho e clicado na grade de produtos
             </p>
             <p style="font-size: 13px; margin: 0;">
-              • <strong>Grade de Produtos</strong>: Use cores com transparência (ex: #ffffff22) para manter o efeito glassmorphism
+              • <strong>Grade de Produtos</strong>: Use cores com transparencia (ex: #ffffff22) para manter o efeito glassmorphism
             </p>
           </div>
         </div>
 
         <!-- Aba Banners -->
         <div id="tab-banners" class="admin-tab-content">
-          <h4>🖼️ Gerenciar Banner</h4>
-          <input type="text" id="bannerImagesURL" placeholder="URLs dos banners (separar por vírgula)">
+          <h4>Gerenciar Banner</h4>
+          <input type="text" id="bannerImagesURL" placeholder="URLs dos banners (separar por virgula)">
           <button id="updateBannerBtn" style="background:#3498db;">
             <i class="fas fa-sync"></i> Atualizar Banner
           </button>
@@ -1201,45 +1220,59 @@
           <div id="adminBanners"></div>
         </div>
 
-        <!-- Aba Código -->
+        <!-- Aba Codigo -->
         <div id="tab-codigo" class="admin-tab-content">
-          <h4>💻 Editor de Código</h4>
-          
-          <!-- Configurações do GitHub -->
-          <div style="margin:15px 0;padding:15px;background:#1e90ff22;border-radius:12px;border:2px solid #1e90ff44;">
-            <h5 style="margin-bottom:10px;">🔧 Configurações do GitHub</h5>
-            <input type="text" id="githubRepoOwner" placeholder="Usuário GitHub (ex: seu-usuario)" style="margin-bottom:8px;">
-            <input type="text" id="githubRepoName" placeholder="Repositório (ex: nelma-modas)" style="margin-bottom:8px;">
-            <input type="text" id="githubBranch" placeholder="Branch (ex: main)" value="main" style="margin-bottom:8px;">
-            <input type="password" id="githubToken" placeholder="Token GitHub (obrigatório)" style="margin-bottom:8px;">
-            <button id="saveGitHubConfig" class="btn" style="background:#333;width:100%;margin-bottom:8px;">
-              <i class="fab fa-github"></i> Salvar Configurações
+          <h4>Editor de Codigo</h4>
+          <div style="margin:25px 0;padding:20px;background:#1e90ff22;border-radius:12px;">
+            <div style="display:flex;gap:8px;margin-bottom:12px;">
+              <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">
+                <i class="fas fa-code"></i> Carregar Codigo
+              </button>
+              <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">
+                <i class="fas fa-vial"></i> Testar Codigo
+              </button>
+            </div>
+            
+            <!-- BARRA DE PESQUISA ADICIONADA AQUI -->
+            <div style="margin-bottom:12px;position:relative;">
+              <div style="display:flex;gap:8px;align-items:center;">
+                <div style="position:relative;flex:1;">
+                  <input type="text" id="codeSearchInput" placeholder="Buscar função, variável ou texto..." 
+                        style="width:100%;padding:12px 45px 12px 15px;border-radius:8px;border:2px solid #ffffff44;background:#000;color:#fff;font-size:13px;">
+                  <i class="fas fa-search" style="position:absolute;right:15px;top:50%;transform:translateY(-50%);color:#888;"></i>
+                </div>
+                <button id="prevMatchBtn" class="btn" style="background:#3498db;padding:12px 15px;white-space:nowrap;">
+                  <i class="fas fa-chevron-up"></i> Anterior
+                </button>
+                <button id="nextMatchBtn" class="btn" style="background:#3498db;padding:12px 15px;white-space:nowrap;">
+                  <i class="fas fa-chevron-down"></i> Proximo
+                </button>
+                <button id="clearSearchBtn" class="btn" style="background:#e74c3c;padding:12px 15px;white-space:nowrap;">
+                  <i class="fas fa-times"></i> Limpar
+                </button>
+              </div>
+              <div id="searchResults" style="margin-top:8px;font-size:12px;color:#fff;text-align:center;display:none;">
+                <span id="matchCount">0</span> resultados encontrados
+              </div>
+              <div class="search-shortcuts">
+                <kbd>Ctrl+F</kbd> Buscar • <kbd>Ctrl+G</kbd> Proximo • <kbd>Ctrl+Shift+G</kbd> Anterior
+              </div>
+            </div>
+            
+            <textarea id="codeEditor" placeholder="Cole ou edite o codigo HTML/CSS/JS aqui..." 
+                      style="width:100%;height:250px;font-family:'Courier New',monospace;font-size:13px;background:#000;color:#0f0;padding:12px;border-radius:8px;border:2px solid #fff4;resize:vertical;"></textarea>
+            
+            <div style="display:flex;gap:8px;margin-top:12px;">
+              <input type="text" id="newVersionNum" placeholder="Versao (ex: 2.1)" style="flex:1;">
+              <input type="text" id="newVersionName" placeholder="Nome da versao" style="flex:1;">
+            </div>
+            <textarea id="versionChanges" placeholder="Descreva as mudancas realizadas..." 
+                      style="width:100%;height:60px;margin-top:8px;font-size:12px;padding:10px;border-radius:8px;border:2px solid #ffffff44;background:#ffffff22;color:#fff;"></textarea>
+            <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:12px;width:100%;">
+              <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSAO
             </button>
-            <button id="configHelpBtn" class="btn" style="background:#9b59b6;width:100%;">
-              <i class="fas fa-question-circle"></i> Como Configurar
-            </button>
+            <p id="codeStatus" style="margin:12px 0 0;font-size:13px;color:#ff0;text-align:center;"></p>
           </div>
-          
-          <div style="display:flex;gap:8px;margin-bottom:12px;">
-            <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">
-              <i class="fas fa-code"></i> Carregar Código
-            </button>
-            <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">
-              <i class="fas fa-vial"></i> Testar Código
-            </button>
-          </div>
-          <textarea id="codeEditor" placeholder="Cole ou edite o código HTML/CSS/JS aqui..." 
-                    style="width:100%;height:250px;font-family:'Courier New',monospace;font-size:13px;background:#000;color:#0f0;padding:12px;border-radius:8px;border:2px solid #fff4;resize:vertical;"></textarea>
-          <div style="display:flex;gap:8px;margin-top:12px;">
-            <input type="text" id="newVersionNum" placeholder="Versão (ex: 2.1)" style="flex:1;">
-            <input type="text" id="newVersionName" placeholder="Nome da versão" style="flex:1;">
-          </div>
-          <textarea id="versionChanges" placeholder="Descreva as mudanças realizadas..." 
-                    style="width:100%;height:60px;margin-top:8px;font-size:12px;padding:10px;border-radius:8px;border:2px solid #ffffff44;background:#ffffff22;color:#fff;"></textarea>
-          <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:12px;width:100%;">
-            <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSÃO
-          </button>
-          <p id="codeStatus" style="margin:12px 0 0;font-size:13px;color:#ff0;text-align:center;"></p>
         </div>
 
         <button id="logoutBtn" style="background:#e74c3c;margin-top:20px;width:100%;">
@@ -1249,8 +1282,8 @@
     </div>
 
     <footer>
-      <p style="margin-bottom: 10px;">📱 Siga-nos no Instagram: <a href="https://instagram.com/nelmamodasoficial" target="_blank">@nelmamodasoficial</a></p>
-      <p style="margin-bottom: 5px;">💬 Entre em contato via WhatsApp: <a href="https://wa.me/5594992936856" target="_blank">(94) 99293-6856</a></p>
+      <p style="margin-bottom: 10px;">Siga-nos no Instagram: <a href="https://instagram.com/nelmamodasoficial" target="_blank">@nelmamodasoficial</a></p>
+      <p style="margin-bottom: 5px;">Entre em contato via WhatsApp: <a href="https://wa.me/5594992936856" target="_blank">(94) 99293-6856</a></p>
       <p>© 2025 NELMA MODAS OFICIAL - Todos os direitos reservados.</p>
     </footer>
   </div>
@@ -1260,8 +1293,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
 
   <script>
-    // 🔧 CONFIGURAÇÃO DO FIREBASE
-    const firebaseConfig = {
+    // CONFIGURACAO DOS DOIS BANCOS FIREBASE
+    
+    // BANCO 1 - ORIGINAL (Produtos, banners, newsletter)
+    const firebaseConfig1 = {
       apiKey: "AIzaSyCO3F1Garczz-1TchO6zm-H3olFGL8TbEo",
       authDomain: "nelma-modas-oficial.firebaseapp.com",
       projectId: "nelma-modas-oficial",
@@ -1270,17 +1305,35 @@
       appId: "1:171368002339:web:8a279e85ffe64cf8749296"
     };
 
-    // ✅ INICIALIZAR FIREBASE
-    let db;
+    // BANCO 2 - NOVO (Atualizacoes do site)
+    const firebaseConfig2 = {
+      apiKey: "AIzaSyDXaBq97ZeB7ghN6ELW-URTDowFWUQfuns",
+      authDomain: "nelmamodas2.firebaseapp.com",
+      projectId: "nelmamodas2",
+      storageBucket: "nelmamodas2.firebasestorage.app",
+      messagingSenderId: "459051033356",
+      appId: "1:459051033356:web:dd09b81fc4e9a84b0e1f29"
+    };
+
+    // INICIALIZAR DOIS BANCOS FIREBASE
+    let db1, db2;
     try {
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.firestore();
-      console.log('✅ Firebase inicializado com sucesso');
+      // Banco 1 - Produtos
+      const app1 = firebase.initializeApp(firebaseConfig1, "app1");
+      db1 = firebase.firestore(app1);
+      
+      // Banco 2 - Atualizacoes
+      const app2 = firebase.initializeApp(firebaseConfig2, "app2");
+      db2 = firebase.firestore(app2);
+      
+      console.log('Dois bancos Firebase inicializados com sucesso');
+      console.log('Banco 1 (Produtos):', firebaseConfig1.projectId);
+      console.log('Banco 2 (Atualizacoes):', firebaseConfig2.projectId);
     } catch (error) {
-      console.error('❌ Erro ao inicializar Firebase:', error);
+      console.error('Erro ao inicializar Firebase:', error);
     }
 
-    // 🎯 VARIÁVEIS GLOBAIS
+    // VARIAVEIS GLOBAIS
     let productsData = [];
     let loaded = false;
     let bannerImages = [];
@@ -1293,28 +1346,24 @@
       cardBg: '#ffffff22',
       disponivelBg: '#32CD32', 
       sobpedidoBg: '#FF6347',
-      selectedSizeColor: '#1e90ff' // NOVO - Cor padrão para tamanho selecionado
+      selectedSizeColor: '#1e90ff'
     };
 
-    // 🔧 CONFIGURAÇÃO DO GITHUB - VALORES PADRÃO
-    let githubConfig = {
-      repoOwner: '',
-      repoName: '',
-      branch: 'main',
-      token: ''
-    };
+    // VARIAVEIS PARA A BUSCA NO EDITOR DE CODIGO
+    let searchMatches = [];
+    let currentMatchIndex = -1;
 
-    // 🚀 INICIALIZAÇÃO DA APLICAÇÃO
+    // INICIALIZACAO DA APLICACAO
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('📄 DOM Carregado - Iniciando aplicação...');
+      console.log('DOM Carregado - Iniciando aplicacao...');
       initApp();
     });
 
-    // 🎯 FUNÇÃO PRINCIPAL DE INICIALIZAÇÃO
+    // FUNCAO PRINCIPAL DE INICIALIZACAO
     function initApp() {
-      console.log('🚀 Iniciando aplicação Nelma Modas...');
+      console.log('Iniciando aplicacao Nelma Modas...');
       
-      // Garantir que a tela de loading está visível
+      // Garantir que a tela de loading esta visivel
       const loadingScreen = document.getElementById('loadingScreen');
       const mainContent = document.getElementById('mainContent');
       
@@ -1328,20 +1377,20 @@
       // Carregar dados do Firebase
       loadInitialData();
       
-      // Timeout de segurança
+      // Timeout de seguranca
       setTimeout(() => {
         if (!loaded) {
-          console.log('⏰ Timeout de segurança ativado');
+          console.log('Timeout de seguranca ativado');
           hideLoading();
         }
       }, 10000);
     }
 
-    // 📦 CARREGAR DADOS INICIAIS
+    // CARREGAR DADOS INICIAIS
     function loadInitialData() {
-      if (!db) {
-        console.error('❌ Firebase não inicializado');
-        showError('Erro de conexão. Recarregue a página.');
+      if (!db1) {
+        console.error('Firebase nao inicializado');
+        showError('Erro de conexao. Recarregue a pagina.');
         return;
       }
       
@@ -1353,16 +1402,13 @@
       
       // Carregar banners
       loadBanners();
-      
-      // Carregar configurações do GitHub
-      loadGitHubConfig();
     }
 
-    // 🎨 CARREGAR TEMA
+    // CARREGAR TEMA (BANCO 1)
     function loadTheme() {
-      if (!db) return;
+      if (!db1) return;
       
-      db.collection('config').doc('theme').onSnapshot(
+      db1.collection('config').doc('theme').onSnapshot(
         (doc) => {
           if (doc.exists) {
             theme = { ...theme, ...doc.data() };
@@ -1375,37 +1421,7 @@
       );
     }
 
-    // 🔧 CARREGAR CONFIGURAÇÕES DO GITHUB
-    function loadGitHubConfig() {
-      if (!db) return;
-      
-      db.collection('config').doc('github').onSnapshot(
-        (doc) => {
-          if (doc.exists) {
-            githubConfig = { ...githubConfig, ...doc.data() };
-            updateGitHubConfigFields();
-          }
-        },
-        (error) => {
-          console.error('Erro ao carregar configurações GitHub:', error);
-        }
-      );
-    }
-
-    // 🔧 ATUALIZAR CAMPOS DE CONFIGURAÇÃO DO GITHUB
-    function updateGitHubConfigFields() {
-      const repoOwner = document.getElementById('githubRepoOwner');
-      const repoName = document.getElementById('githubRepoName');
-      const branch = document.getElementById('githubBranch');
-      const token = document.getElementById('githubToken');
-      
-      if (repoOwner) repoOwner.value = githubConfig.repoOwner || '';
-      if (repoName) repoName.value = githubConfig.repoName || '';
-      if (branch) branch.value = githubConfig.branch || 'main';
-      if (token) token.value = githubConfig.token || '';
-    }
-
-    // 🎨 APLICAR TEMA - ATUALIZADA COM NOVA COR
+    // APLICAR TEMA
     function applyTheme() {
       document.body.style.backgroundColor = theme.bodyBg;
       document.querySelector('header').style.backgroundColor = theme.headerBg;
@@ -1418,7 +1434,7 @@
       // Aplicar cor da grade de produtos
       document.documentElement.style.setProperty('--bg-card', theme.cardBg);
       
-      // Aplicar cor do tamanho selecionado (NOVO)
+      // Aplicar cor do tamanho selecionado
       document.documentElement.style.setProperty('--selected-size-color', theme.selectedSizeColor || '#1e90ff');
       
       document.querySelectorAll('.status.disponivel').forEach(el => {
@@ -1429,44 +1445,44 @@
         el.style.backgroundColor = theme.sobpedidoBg;
       });
       
-      // Aplicar cores aos botões
+      // Aplicar cores aos botoes
       document.querySelectorAll('.btn:not(.btn-whatsapp):not(.btn-comprar)').forEach(btn => {
         btn.style.backgroundColor = theme.buttonBg;
       });
     }
 
-    // 📦 CARREGAR PRODUTOS
+    // CARREGAR PRODUTOS (BANCO 1)
     function loadProducts() {
-      if (!db) {
-        console.error('❌ Firebase não disponível para carregar produtos');
+      if (!db1) {
+        console.error('Firebase nao disponivel para carregar produtos');
         return;
       }
       
-      db.collection('produtos').orderBy('nome').onSnapshot(
+      db1.collection('produtos').orderBy('nome').onSnapshot(
         (snap) => {
           productsData = snap.docs.map(doc => ({ 
             ...doc.data(), 
             _id: doc.id 
           }));
           
-          console.log(`✅ ${productsData.length} produtos carregados`);
+          console.log(`${productsData.length} produtos carregados`);
           filterAndRenderProducts();
           updateAdminProductsList();
           hideLoading();
         },
         (error) => {
-          console.error('❌ Erro ao carregar produtos:', error);
+          console.error('Erro ao carregar produtos:', error);
           showError('Erro ao carregar produtos. Tentando novamente...');
           setTimeout(loadProducts, 3000);
         }
       );
     }
 
-    // 🖼️ CARREGAR BANNERS
+    // CARREGAR BANNERS (BANCO 1)
     function loadBanners() {
-      if (!db) return;
+      if (!db1) return;
       
-      db.collection('banners').doc('current').onSnapshot(
+      db1.collection('banners').doc('current').onSnapshot(
         (doc) => {
           bannerImages = doc.exists && doc.data().urls?.length ? 
             doc.data().urls : 
@@ -1483,7 +1499,7 @@
       );
     }
 
-    // 🎯 FILTRAR E RENDERIZAR PRODUTOS
+    // FILTRAR E RENDERIZAR PRODUTOS
     function filterAndRenderProducts() {
       const search = document.getElementById('searchInput').value.toLowerCase().trim();
       const status = document.getElementById('statusFilter').value;
@@ -1527,7 +1543,7 @@
         return `
           <div class="product" style="animation-delay: ${index * 0.1}s">
             <span class="status ${product.status}">
-              ${product.status === 'disponivel' ? '🟢 Disponível' : product.status === 'sobpedido' ? '🟡 Sob Pedido' : '🟣 Promoção'}
+              ${product.status === 'disponivel' ? 'Disponivel' : product.status === 'sobpedido' ? 'Sob Pedido' : 'Promocao'}
             </span>
             <img src="${safeImg}" alt="${product.nome}" onclick="openDetailModal('${product._id}')">
             <h3>${product.nome}</h3>
@@ -1557,17 +1573,17 @@
       applyTheme();
     }
 
-    // 🖼️ RENDERIZAR BANNERS
+    // RENDERIZAR BANNERS
     function renderBanners() {
       const bannerSlide = document.getElementById('bannerSlide');
       if (!bannerSlide) return;
       
       bannerSlide.innerHTML = bannerImages.map(url => 
         `<img src="${url}" alt="Banner Nelma Modas" 
-              onerror="this.src='https://via.placeholder.com/1200x400/ef8184/ffffff?text=Banner+Indisponível'">`
+              onerror="this.src='https://via.placeholder.com/1200x400/ef8184/ffffff?text=Banner+Indisponivel'">`
       ).join('');
 
-      // Slideshow automático
+      // Slideshow automatico
       if (bannerImages.length > 1) {
         startBannerSlideshow();
       }
@@ -1586,7 +1602,7 @@
       }, 5000);
     }
 
-    // 🎯 FUNÇÃO PARA ESCONDER LOADING
+    // FUNCAO PARA ESCONDER LOADING
     function hideLoading() {
       if (loaded) return;
       
@@ -1601,11 +1617,11 @@
       setTimeout(() => {
         loadingScreen.style.display = 'none';
         mainContent.classList.add('loaded');
-        console.log('🎉 Aplicação carregada com sucesso!');
+        console.log('Aplicacao carregada com sucesso!');
       }, 800);
     }
 
-    // ❌ FUNÇÃO DE ERRO
+    // FUNCAO DE ERRO
     function showError(message) {
       const loadingScreen = document.getElementById('loadingScreen');
       if (!loadingScreen) return;
@@ -1625,86 +1641,76 @@
       `;
     }
 
-    // 📧 NEWSLETTER - VERSÃO CORRIGIDA COM FALLBACK
+    // NEWSLETTER (BANCO 1)
     async function cadastrarNewsletter() {
       const emailInput = document.getElementById('newsletterEmail');
       if (!emailInput) return;
       
       const email = emailInput.value.trim();
       
-      // Validação mais flexível do email
       if (!email) {
-        showNewsletterMessage('❌ Por favor, insira um e-mail válido', 'error');
+        showNewsletterMessage('Por favor, insira um e-mail valido', 'error');
         return;
       }
       
-      // Validação básica de email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        showNewsletterMessage('❌ Por favor, insira um e-mail válido', 'error');
+        showNewsletterMessage('Por favor, insira um e-mail valido', 'error');
         return;
       }
       
-      // Tentar Firebase primeiro, se falhar usar localStorage
-      if (db) {
+      // Usar Banco 1 para newsletter
+      if (db1) {
         try {
-          // Verificar se o email já existe
-          const snapshot = await db.collection('newsletter')
+          const snapshot = await db1.collection('newsletter')
             .where('email', '==', email)
             .get();
           
           if (!snapshot.empty) {
-            showNewsletterMessage('✅ Este e-mail já está cadastrado!', 'success');
+            showNewsletterMessage('Este e-mail ja esta cadastrado!', 'success');
             emailInput.value = '';
             return;
           }
           
-          // Adicionar à newsletter
-          await db.collection('newsletter').add({
+          await db1.collection('newsletter').add({
             email: email,
             dataCadastro: firebase.firestore.FieldValue.serverTimestamp(),
             origem: 'site',
             ativo: true
           });
           
-          showNewsletterMessage('🎉 E-mail cadastrado com sucesso! Você receberá nossas novidades em breve.', 'success');
+          showNewsletterMessage('E-mail cadastrado com sucesso! Voce recebera nossas novidades em breve.', 'success');
           emailInput.value = '';
           return;
           
         } catch (error) {
           console.error('Erro Firebase:', error);
-          // Se der erro de permissão, usar fallback
-          if (error.code === 'permission-denied') {
-            console.log('Firebase com erro de permissão, usando fallback...');
-          }
         }
       }
       
-      // FALLBACK: Salvar no Local Storage
+      // FALLBACK: Local Storage
       try {
         let newsletters = JSON.parse(localStorage.getItem('nelma_newsletter') || '[]');
         
-        // Verificar se já existe
         if (newsletters.includes(email)) {
-          showNewsletterMessage('✅ Este e-mail já está cadastrado!', 'success');
+          showNewsletterMessage('Este e-mail ja esta cadastrado!', 'success');
           emailInput.value = '';
           return;
         }
         
-        // Adicionar à lista
         newsletters.push(email);
         localStorage.setItem('nelma_newsletter', JSON.stringify(newsletters));
         
-        showNewsletterMessage('🎉 E-mail cadastrado com sucesso! Você receberá nossas novidades em breve.', 'success');
+        showNewsletterMessage('E-mail cadastrado com sucesso! Voce recebera nossas novidades em breve.', 'success');
         emailInput.value = '';
         
       } catch (error) {
         console.error('Erro no fallback:', error);
-        showNewsletterMessage('❌ Erro ao cadastrar. Tente novamente.', 'error');
+        showNewsletterMessage('Erro ao cadastrar. Tente novamente.', 'error');
       }
     }
 
-    // Função para mostrar mensagens na newsletter
+    // Funcao para mostrar mensagens na newsletter
     function showNewsletterMessage(message, type) {
       const messageDiv = document.getElementById('newsletterMessage');
       if (!messageDiv) return;
@@ -1713,13 +1719,13 @@
       messageDiv.className = 'newsletter-message ' + (type === 'success' ? 'newsletter-success' : 'newsletter-error');
       messageDiv.style.display = 'block';
       
-      // Auto-remover após 5 segundos
+      // Auto-remover apos 5 segundos
       setTimeout(() => {
         messageDiv.style.display = 'none';
       }, 5000);
     }
 
-    // 📞 COMPRAR PELO WHATSAPP
+    // COMPRAR PELO WHATSAPP
     function comprarProdutoModal(productId) {
       const product = productsData.find(p => p._id === productId);
       if (!product) return;
@@ -1727,11 +1733,11 @@
       const selectedSize = document.querySelector(`.product [data-product="${productId}"] .size-btn.selected`);
       const tamanho = selectedSize ? selectedSize.textContent : '';
       
-      let mensagem = `🛍️ *COMPRA - NELMA MODAS* 🛍️\n\n`;
+      let mensagem = `COMPRA - NELMA MODAS\n\n`;
       mensagem += `*Produto:* ${product.nome}\n`;
       if (tamanho) mensagem += `*Tamanho:* ${tamanho}\n`;
-      mensagem += `\n💰 _Gostaria de comprar este produto!_ 💰\n\n`;
-      mensagem += `📦 _Por favor, informe as informações para pagamento e entrega._`;
+      mensagem += `\n_Gostaria de comprar este produto!_\n\n`;
+      mensagem += `_Por favor, informe as informacoes para pagamento e entrega._`;
       
       const url = `https://wa.me/5594992936856?text=${encodeURIComponent(mensagem)}`;
       window.open(url, '_blank');
@@ -1743,16 +1749,16 @@
       const product = productsData.find(p => p._id === currentProductForPurchase);
       if (!product) return;
       
-      let mensagem = `🛍️ *COMPRA - NELMA MODAS* 🛍️\n\n`;
+      let mensagem = `COMPRA - NELMA MODAS\n\n`;
       mensagem += `*Produto:* ${product.nome}\n`;
-      mensagem += `\n💰 _Gostaria de comprar este produto!_ 💰\n\n`;
-      mensagem += `📦 _Por favor, informe as informações para pagamento e entrega._`;
+      mensagem += `\n_Gostaria de comprar este produto!_\n\n`;
+      mensagem += `_Por favor, informe as informacoes para pagamento e entrega._`;
       
       const url = `https://wa.me/5594992936856?text=${encodeURIComponent(mensagem)}`;
       window.open(url, '_blank');
     }
 
-    // 🎯 CONFIGURAÇÃO DE EVENT LISTENERS
+    // CONFIGURACAO DE EVENT LISTENERS
     function setupEventListeners() {
       // Busca e filtros
       const searchInput = document.getElementById('searchInput');
@@ -1771,7 +1777,7 @@
         categoryFilter.addEventListener('change', filterAndRenderProducts);
       }
       
-      // Navegação de produtos
+      // Navegacao de produtos
       const prevProduct = document.getElementById('prevProduct');
       const nextProduct = document.getElementById('nextProduct');
       
@@ -1822,7 +1828,7 @@
             updateAdminProductsList();
             updateColorPickers();
           } else {
-            alert('❌ Senha incorreta');
+            alert('Senha incorreta');
           }
         };
       }
@@ -1835,7 +1841,7 @@
           const b = document.getElementById('togglePassword');
           if (p && b) {
             p.type = p.type === 'password' ? 'text' : 'password';
-            b.textContent = p.type === 'password' ? '👁️ Mostrar' : '🙈 Esconder';
+            b.textContent = p.type === 'password' ? 'Mostrar' : 'Esconder';
           }
         };
       }
@@ -1867,12 +1873,12 @@
           // Adicionar classe active na aba clicada
           this.classList.add('active');
           
-          // Esconder todos os conteúdos
+          // Esconder todos os conteudos
           document.querySelectorAll('.admin-tab-content').forEach(content => {
             content.classList.remove('active');
           });
           
-          // Mostrar o conteúdo da aba clicada
+          // Mostrar o conteudo da aba clicada
           document.getElementById(`tab-${tabId}`).classList.add('active');
         });
       });
@@ -1887,17 +1893,6 @@
         });
       }
       
-      // Configurações do GitHub
-      const saveGitHubConfigBtn = document.getElementById('saveGitHubConfig');
-      if (saveGitHubConfigBtn) {
-        saveGitHubConfigBtn.onclick = saveGitHubConfig;
-      }
-      
-      const configHelpBtn = document.getElementById('configHelpBtn');
-      if (configHelpBtn) {
-        configHelpBtn.onclick = showGitHubConfigInstructions;
-      }
-      
       // Fechar modal ao clicar fora
       window.onclick = function(event) {
         const modal = document.getElementById('detailModal');
@@ -1910,155 +1905,145 @@
           adminPanel.style.display = 'none';
         }
       };
+
+      // Inicializar busca no código
+      initializeCodeSearch();
     }
 
-    // 🔧 FUNÇÕES DO GITHUB
+    // FUNCIONALIDADE DE PESQUISA NO EDITOR DE CÓDIGO
+    function initializeCodeSearch() {
+        const codeSearchInput = document.getElementById('codeSearchInput');
+        const prevMatchBtn = document.getElementById('prevMatchBtn');
+        const nextMatchBtn = document.getElementById('nextMatchBtn');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const searchResults = document.getElementById('searchResults');
+        const matchCount = document.getElementById('matchCount');
+        const codeEditor = document.getElementById('codeEditor');
 
-    // Salvar configurações do GitHub
-    async function saveGitHubConfig() {
-      const repoOwner = document.getElementById('githubRepoOwner');
-      const repoName = document.getElementById('githubRepoName');
-      const branch = document.getElementById('githubBranch');
-      const token = document.getElementById('githubToken');
-      
-      if (!repoOwner || !repoName || !branch || !token) return;
-      
-      const newConfig = {
-        repoOwner: repoOwner.value.trim(),
-        repoName: repoName.value.trim(),
-        branch: branch.value.trim() || 'main',
-        token: token.value.trim()
-      };
-      
-      if (!newConfig.repoOwner || !newConfig.repoName || !newConfig.token) {
-        alert('❌ Preencha todos os campos obrigatórios do GitHub');
-        return;
-      }
-      
-      if (!db) {
-        alert('❌ Erro de conexão. Tente novamente.');
-        return;
-      }
-      
-      try {
-        await db.collection('config').doc('github').set(newConfig);
-        githubConfig = newConfig;
-        alert('✅ Configurações do GitHub salvas com sucesso!');
-      } catch (error) {
-        alert('❌ Erro ao salvar configurações: ' + error.message);
-      }
-    }
+        if (!codeSearchInput || !codeEditor) return;
 
-    // 🔄 SISTEMA DE ATUALIZAÇÃO GITHUB + NETLIFY
-    async function publishToGitHub(versionData, htmlContent) {
-      const statusElement = document.getElementById('codeStatus');
-      
-      // Verificar se as configurações estão completas
-      if (!githubConfig.repoOwner || !githubConfig.repoName || !githubConfig.token) {
-        statusElement.textContent = '❌ Configure primeiro as credenciais do GitHub';
-        statusElement.style.color = '#f00';
-        return false;
-      }
-      
-      try {
-        statusElement.textContent = '🔄 Conectando com GitHub...';
-        statusElement.style.color = '#ff0';
-
-        const { repoOwner, repoName, branch, token } = githubConfig;
-        const filePath = 'index.html';
-        const commitMessage = `🚀 Deploy automático - Versão ${versionData.number}: ${versionData.name}`;
-
-        // Obter SHA do arquivo atual (se existir)
-        let currentSha = null;
-        try {
-          const getFileUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branch}`;
-          const fileResponse = await fetch(getFileUrl, {
-            headers: {
-              'Authorization': `token ${token}`,
-              'Accept': 'application/vnd.github.v3+json'
+        // Função para realizar a busca
+        function performSearch() {
+            const searchTerm = codeSearchInput.value.trim();
+            const code = codeEditor.value;
+            
+            if (!searchTerm) {
+                clearSearch();
+                return;
             }
-          });
-          if (fileResponse.ok) {
-            const fileData = await fileResponse.json();
-            currentSha = fileData.sha;
-          }
-        } catch (error) {
-          console.log('Arquivo não existe ou é a primeira publicação');
+
+            // Limpar highlights anteriores
+            clearHighlights();
+
+            // Encontrar todas as ocorrências
+            searchMatches = [];
+            const regex = new RegExp(escapeRegExp(searchTerm), 'gi');
+            let match;
+            
+            while ((match = regex.exec(code)) !== null) {
+                searchMatches.push({
+                    start: match.index,
+                    end: match.index + match[0].length,
+                    text: match[0]
+                });
+            }
+
+            // Atualizar contador
+            matchCount.textContent = searchMatches.length;
+            searchResults.style.display = searchMatches.length > 0 ? 'block' : 'none';
+
+            if (searchMatches.length > 0) {
+                currentMatchIndex = 0;
+                highlightCurrentMatch();
+            } else {
+                currentMatchIndex = -1;
+            }
         }
 
-        // Preparar dados para upload
-        const content = btoa(unescape(encodeURIComponent(htmlContent)));
-        
-        const uploadData = {
-          message: commitMessage,
-          content: content,
-          branch: branch
-        };
-
-        if (currentSha) {
-          uploadData.sha = currentSha;
+        // Função para escapar caracteres especiais em regex
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
-        // Fazer upload
-        const uploadUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+        // Função para limpar highlights
+        function clearHighlights() {
+            searchMatches = [];
+            currentMatchIndex = -1;
+            searchResults.style.display = 'none';
+        }
+
+        // Função para destacar o match atual
+        function highlightCurrentMatch() {
+            if (currentMatchIndex < 0 || currentMatchIndex >= searchMatches.length) return;
+
+            const match = searchMatches[currentMatchIndex];
+            
+            // Focar no editor e selecionar o texto
+            codeEditor.focus();
+            codeEditor.setSelectionRange(match.start, match.end);
+            
+            // Scroll para a posição do match
+            const lineHeight = 16; // Aproximadamente a altura da linha
+            const linesBeforeMatch = codeEditor.value.substring(0, match.start).split('\n').length - 1;
+            codeEditor.scrollTop = linesBeforeMatch * lineHeight - 100;
+        }
+
+        // Função para navegar para o próximo match
+        function nextMatch() {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex = (currentMatchIndex + 1) % searchMatches.length;
+            highlightCurrentMatch();
+        }
+
+        // Função para navegar para o match anterior
+        function prevMatch() {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex = (currentMatchIndex - 1 + searchMatches.length) % searchMatches.length;
+            highlightCurrentMatch();
+        }
+
+        // Event Listeners
+        codeSearchInput.addEventListener('input', performSearch);
+        codeSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                nextMatch();
+            }
+        });
         
-        const uploadResponse = await fetch(uploadUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${token}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify(uploadData)
+        nextMatchBtn.addEventListener('click', nextMatch);
+        prevMatchBtn.addEventListener('click', prevMatch);
+        
+        clearSearchBtn.addEventListener('click', function() {
+            codeSearchInput.value = '';
+            clearHighlights();
+            codeEditor.focus();
         });
 
-        if (!uploadResponse.ok) {
-          const errorData = await uploadResponse.json();
-          throw new Error(`GitHub API: ${errorData.message || 'Erro desconhecido'}`);
-        }
-
-        statusElement.textContent = '✅ Código publicado no GitHub! Netlify iniciará deploy automaticamente...';
-        statusElement.style.color = '#0f0';
-
-        return true;
-
-      } catch (error) {
-        console.error('Erro na publicação:', error);
-        statusElement.textContent = `❌ Erro: ${error.message}`;
-        statusElement.style.color = '#f00';
-        return false;
-      }
+        // Atalhos de teclado no editor
+        codeEditor.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                codeSearchInput.focus();
+                codeSearchInput.select();
+            }
+            
+            if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
+                e.preventDefault();
+                if (searchMatches.length > 0) {
+                    nextMatch();
+                }
+            }
+            
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'G') {
+                e.preventDefault();
+                if (searchMatches.length > 0) {
+                    prevMatch();
+                }
+            }
+        });
     }
 
-    // 📋 INSTRUÇÕES DE CONFIGURAÇÃO DO GITHUB
-    function showGitHubConfigInstructions() {
-      const instructions = `
-🎯 COMO CONFIGURAR O DEPLOY AUTOMÁTICO:
-
-1. 🔧 CONFIGURAÇÃO DO GITHUB:
-   • Crie um repositório no GitHub
-   • Vá em Settings > Tokens (Classic)
-   • Gere um token com permissão "repo"
-   • Cole o token no campo acima
-
-2. 🌐 CONFIGURAÇÃO DO NETLIFY:
-   • Acesse netlify.com
-   • "Add new site" → "Import from Git"
-   • Conecte com seu repositório GitHub
-   • Deploy automático estará ativo!
-
-3. 🚀 FUNCIONAMENTO:
-   • Ao publicar uma versão, o código vai para GitHub
-   • Netlify detecta mudanças e faz deploy
-   • Site atualizado em 1-2 minutos
-
-⚠️  MANTENHA SEU TOKEN SEGURO!
-      `;
-      
-      alert(instructions);
-    }
-
-    // 🎯 FUNÇÕES GLOBAIS
+    // FUNCOES GLOBAIS
     window.selecionarTamanho = function(btn) {
       const productCard = btn.closest('.product');
       productCard.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
@@ -2073,7 +2058,7 @@
       
       document.getElementById('detailTitle').textContent = p.nome;
       const statusEl = document.getElementById('detailStatus');
-      statusEl.textContent = p.status === 'disponivel' ? '🟢 Disponível' : p.status === 'sobpedido' ? '🟡 Sob Pedido' : '🟣 Promoção';
+      statusEl.textContent = p.status === 'disponivel' ? 'Disponivel' : p.status === 'sobpedido' ? 'Sob Pedido' : 'Promocao';
       statusEl.className = p.status;
       
       const images = p.detailImages?.length ? p.detailImages : [p.mainImage];
@@ -2107,8 +2092,8 @@
       currentProductForPurchase = null;
     };
 
-    // ⚙️ PAINEL ADMINISTRATIVO - FUNÇÕES
-    // 🎨 ATUALIZAR A FUNÇÃO updateColorPickers - ATUALIZADA COM NOVA COR
+    // PAINEL ADMINISTRATIVO - FUNCOES
+    // ATUALIZAR A FUNCAO updateColorPickers
     function updateColorPickers() {
       const colorBodyBg = document.getElementById('colorBodyBg');
       const colorHeaderBg = document.getElementById('colorHeaderBg');
@@ -2117,7 +2102,7 @@
       const colorCardBg = document.getElementById('colorCardBg');
       const colorDisponivelBg = document.getElementById('colorDisponivelBg');
       const colorSobpedidoBg = document.getElementById('colorSobpedidoBg');
-      const colorSelectedSize = document.getElementById('colorSelectedSize'); // NOVO
+      const colorSelectedSize = document.getElementById('colorSelectedSize');
       
       if (colorBodyBg) colorBodyBg.value = theme.bodyBg;
       if (colorHeaderBg) colorHeaderBg.value = theme.headerBg;
@@ -2126,10 +2111,10 @@
       if (colorCardBg) colorCardBg.value = theme.cardBg;
       if (colorDisponivelBg) colorDisponivelBg.value = theme.disponivelBg;
       if (colorSobpedidoBg) colorSobpedidoBg.value = theme.sobpedidoBg;
-      if (colorSelectedSize) colorSelectedSize.value = theme.selectedSizeColor || '#1e90ff'; // NOVO
+      if (colorSelectedSize) colorSelectedSize.value = theme.selectedSizeColor || '#1e90ff';
     }
 
-    // 🎨 ATUALIZAR O EVENTO DO BOTÃO SALVAR TEMA - ATUALIZADO COM NOVA COR
+    // SALVAR TEMA (BANCO 1)
     const saveThemeBtn = document.getElementById('saveThemeBtn');
     if (saveThemeBtn) {
       saveThemeBtn.onclick = async function() {
@@ -2140,7 +2125,7 @@
         const colorCardBg = document.getElementById('colorCardBg');
         const colorDisponivelBg = document.getElementById('colorDisponivelBg');
         const colorSobpedidoBg = document.getElementById('colorSobpedidoBg');
-        const colorSelectedSize = document.getElementById('colorSelectedSize'); // NOVO
+        const colorSelectedSize = document.getElementById('colorSelectedSize');
         
         if (colorBodyBg) theme.bodyBg = colorBodyBg.value;
         if (colorHeaderBg) theme.headerBg = colorHeaderBg.value;
@@ -2149,24 +2134,25 @@
         if (colorCardBg) theme.cardBg = colorCardBg.value;
         if (colorDisponivelBg) theme.disponivelBg = colorDisponivelBg.value;
         if (colorSobpedidoBg) theme.sobpedidoBg = colorSobpedidoBg.value;
-        if (colorSelectedSize) theme.selectedSizeColor = colorSelectedSize.value; // NOVO
+        if (colorSelectedSize) theme.selectedSizeColor = colorSelectedSize.value;
         
-        if (!db) {
-          alert('Erro de conexão. Tente novamente.');
+        // USAR BANCO 1 PARA TEMA
+        if (!db1) {
+          alert('Erro de conexao. Tente novamente.');
           return;
         }
         
         try {
-          await db.collection('config').doc('theme').set(theme);
-          alert('🎨 Cores salvas com sucesso!');
+          await db1.collection('config').doc('theme').set(theme);
+          alert('Cores salvas com sucesso!');
           applyTheme();
         } catch (error) {
-          alert('❌ Erro ao salvar cores: ' + error.message);
+          alert('Erro ao salvar cores: ' + error.message);
         }
       };
     }
 
-    // ✂️ CORTADOR DE IMAGENS
+    // CORTADOR DE IMAGENS
     let cropper = null;
     
     const openCropBtn = document.getElementById('openCropTool');
@@ -2199,17 +2185,17 @@
         
         const url = cropInput.value.trim();
         if (!url || !url.startsWith('http')) {
-          alert('❌ URL inválida');
+          alert('URL invalida');
           return;
         }
         
-        statusText.textContent = '⏳ Carregando imagem...';
+        statusText.textContent = 'Carregando imagem...';
         statusText.style.color = '#ff0';
         statusText.style.display = 'block';
         
         cropImage.src = url + '?t=' + Date.now();
         cropImage.onload = function() {
-          statusText.textContent = '✅ Imagem carregada. Arraste para ajustar o corte.';
+          statusText.textContent = 'Imagem carregada. Arraste para ajustar o corte.';
           statusText.style.color = '#0f0';
           
           if (cropper) {
@@ -2232,7 +2218,7 @@
         };
         
         cropImage.onerror = function() {
-          statusText.textContent = '❌ Erro ao carregar a imagem';
+          statusText.textContent = 'Erro ao carregar a imagem';
           statusText.style.color = '#f00';
         };
       };
@@ -2242,7 +2228,7 @@
     if (cropDoneBtn) {
       cropDoneBtn.onclick = function() {
         if (!cropper) {
-          alert('❌ Carregue uma imagem primeiro');
+          alert('Carregue uma imagem primeiro');
           return;
         }
         
@@ -2252,7 +2238,7 @@
         
         if (!statusText || !outputField || !copyBtn) return;
         
-        statusText.textContent = '✂️ Cortando imagem...';
+        statusText.textContent = 'Cortando imagem...';
         statusText.style.color = '#ff0';
         
         try {
@@ -2274,10 +2260,10 @@
             mainImageURL.value = dataUrl;
           }
           
-          statusText.textContent = '✅ Corte concluído com sucesso!';
+          statusText.textContent = 'Corte concluido com sucesso!';
           statusText.style.color = '#0f0';
         } catch (e) {
-          statusText.textContent = '❌ Erro: ' + e.message;
+          statusText.textContent = 'Erro: ' + e.message;
           statusText.style.color = '#f00';
         }
       };
@@ -2314,11 +2300,11 @@
         
         outputField.select();
         document.execCommand('copy');
-        alert('✅ URL copiada para a área de transferência!');
+        alert('URL copiada para a area de transferencia!');
       };
     }
 
-    // 📝 EDITOR DE CÓDIGO
+    // EDITOR DE CODIGO (BANCO 2)
     const loadCodeBtn = document.getElementById('loadCodeBtn');
     if (loadCodeBtn) {
       loadCodeBtn.onclick = function() {
@@ -2329,13 +2315,13 @@
           
           const codeStatus = document.getElementById('codeStatus');
           if (codeStatus) {
-            codeStatus.textContent = '✅ Código carregado com sucesso!';
+            codeStatus.textContent = 'Codigo carregado com sucesso!';
             codeStatus.style.color = '#0f0';
           }
         } catch (e) {
           const codeStatus = document.getElementById('codeStatus');
           if (codeStatus) {
-            codeStatus.textContent = '❌ Erro: ' + e.message;
+            codeStatus.textContent = 'Erro: ' + e.message;
             codeStatus.style.color = '#f00';
           }
         }
@@ -2350,7 +2336,7 @@
         
         const code = codeEditor.value;
         if (!code.trim()) {
-          alert('❌ Código vazio');
+          alert('Codigo vazio');
           return;
         }
         
@@ -2361,7 +2347,7 @@
         
         const codeStatus = document.getElementById('codeStatus');
         if (codeStatus) {
-          codeStatus.textContent = '✅ Código testado em nova aba!';
+          codeStatus.textContent = 'Codigo testado em nova aba!';
           codeStatus.style.color = '#0f0';
         }
       };
@@ -2383,23 +2369,25 @@
         const changes = versionChanges.value.trim();
         
         if (!code || !num || !name || !changes) {
-          alert('❌ Preencha todos os campos!');
+          alert('Preencha todos os campos!');
           return;
         }
         
-        if (!db) {
-          alert('❌ Erro de conexão. Tente novamente.');
+        // USAR BANCO 2 PARA ATUALIZACOES
+        if (!db2) {
+          alert('Erro de conexao com banco de atualizacoes. Tente novamente.');
           return;
         }
         
         const codeStatus = document.getElementById('codeStatus');
         if (codeStatus) {
-          codeStatus.textContent = '🚀 Publicando versão...';
+          codeStatus.textContent = 'Publicando versao...';
           codeStatus.style.color = '#ff0';
         }
         
         try {
-          const versionRef = await db.collection('siteVersions').add({
+          // Salvar no Banco 2
+          const versionRef = await db2.collection('siteVersions').add({
             number: num,
             name: name,
             changes: changes,
@@ -2407,54 +2395,40 @@
             publishedAt: firebase.firestore.FieldValue.serverTimestamp()
           });
           
-          await db.collection('config').doc('currentVersion').set({
+          await db2.collection('config').doc('currentVersion').set({
             id: versionRef.id,
             number: num,
             name: name,
             changes: changes
           });
           
-          // 🆕 ADICIONE ESTA PARTE PARA PUBLICAR NO GITHUB
-          const versionData = {
-            number: num,
-            name: name,
-            changes: changes
-          };
-          
-          const publishSuccess = await publishToGitHub(versionData, code);
-          
-          if (publishSuccess) {
-            if (codeStatus) {
-              codeStatus.textContent = `✅ Versão ${num} publicada! Deploy em andamento...`;
-              codeStatus.style.color = '#0f0';
-            }
-            
-            // Limpar campos
-            newVersionNum.value = '';
-            newVersionName.value = '';
-            versionChanges.value = '';
-            
-            setTimeout(() => {
-              if (confirm(`🎉 Versão ${num} publicada com sucesso!\n\nGitHub atualizado e Netlify iniciará o deploy automaticamente.\n\nDeseja recarregar o site após o deploy?`)) {
-                localStorage.setItem('siteVersion', num);
-                // Não recarregar imediatamente - aguardar deploy
-                setTimeout(() => {
-                  location.reload();
-                }, 120000); // 2 minutos para o deploy
-              }
-            }, 1000);
+          if (codeStatus) {
+            codeStatus.textContent = `Versao ${num} publicada com sucesso!`;
+            codeStatus.style.color = '#0f0';
           }
+          
+          // Limpar campos
+          newVersionNum.value = '';
+          newVersionName.value = '';
+          versionChanges.value = '';
+          
+          setTimeout(() => {
+            if (confirm(`Versao ${num} publicada com sucesso!\n\nDeseja recarregar o site agora?`)) {
+              localStorage.setItem('siteVersion', num);
+              location.reload();
+            }
+          }, 1000);
           
         } catch (e) {
           if (codeStatus) {
-            codeStatus.textContent = '❌ Erro: ' + e.message;
+            codeStatus.textContent = 'Erro: ' + e.message;
             codeStatus.style.color = '#f00';
           }
         }
       };
     }
 
-    // 📦 GERENCIAMENTO DE PRODUTOS
+    // GERENCIAMENTO DE PRODUTOS (BANCO 1)
     const addProductBtn = document.getElementById('addProductBtn');
     if (addProductBtn) {
       addProductBtn.onclick = async function() {
@@ -2473,17 +2447,18 @@
         const detailImages = detailImagesURL.value.split(',').map(s => s.trim()).filter(s => s.startsWith('http') || s.startsWith('data:'));
         
         if (!nome || !mainImage) {
-          alert('❌ Preencha nome e imagem do produto');
+          alert('Preencha nome e imagem do produto');
           return;
         }
         
-        if (!db) {
-          alert('❌ Erro de conexão. Tente novamente.');
+        // USAR BANCO 1 PARA PRODUTOS
+        if (!db1) {
+          alert('Erro de conexao. Tente novamente.');
           return;
         }
         
         try {
-          await db.collection('produtos').add({
+          await db1.collection('produtos').add({
             nome,
             status,
             tamanhos,
@@ -2492,7 +2467,7 @@
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
           });
           
-          alert('✅ Produto adicionado com sucesso!');
+          alert('Produto adicionado com sucesso!');
           ['productName', 'productSizes', 'mainImageURL', 'detailImagesURL'].forEach(id => {
             const element = document.getElementById(id);
             if (element) element.value = '';
@@ -2506,7 +2481,7 @@
             cropper = null;
           }
         } catch (error) {
-          alert('❌ Erro ao adicionar produto: ' + error.message);
+          alert('Erro ao adicionar produto: ' + error.message);
         }
       };
     }
@@ -2523,9 +2498,9 @@
         div.innerHTML = `
           <input type="text" value="${p.nome}" id="editName_${p._id}" placeholder="Nome">
           <select id="editStatus_${p._id}">
-            <option value="disponivel" ${p.status === 'disponivel' ? 'selected' : ''}>🟢 Disponível</option>
-            <option value="sobpedido" ${p.status === 'sobpedido' ? 'selected' : ''}>🟡 Sob Pedido</option>
-            <option value="promocao" ${p.status === 'promocao' ? 'selected' : ''}>🟣 Promoção</option>
+            <option value="disponivel" ${p.status === 'disponivel' ? 'selected' : ''}>Disponivel</option>
+            <option value="sobpedido" ${p.status === 'sobpedido' ? 'selected' : ''}>Sob Pedido</option>
+            <option value="promocao" ${p.status === 'promocao' ? 'selected' : ''}>Promocao</option>
           </select>
           <input type="text" value="${Array.isArray(p.tamanhos) ? p.tamanhos.join(', ') : ''}" id="editSizes_${p._id}" placeholder="P, M, G">
           <button onclick="saveProduct('${p._id}')" style="background: #27ae60;">
@@ -2551,40 +2526,42 @@
       const tamanhos = sizesInput.value.split(',').map(s => s.trim()).filter(Boolean);
       
       if (!nome) {
-        alert('❌ Nome obrigatório');
+        alert('Nome obrigatorio');
         return;
       }
       
-      if (!db) {
-        alert('❌ Erro de conexão. Tente novamente.');
+      // USAR BANCO 1 PARA PRODUTOS
+      if (!db1) {
+        alert('Erro de conexao. Tente novamente.');
         return;
       }
       
       try {
-        await db.collection('produtos').doc(id).update({ nome, status, tamanhos });
-        alert('✅ Produto atualizado com sucesso!');
+        await db1.collection('produtos').doc(id).update({ nome, status, tamanhos });
+        alert('Produto atualizado com sucesso!');
       } catch (error) {
-        alert('❌ Erro ao atualizar produto: ' + error.message);
+        alert('Erro ao atualizar produto: ' + error.message);
       }
     };
 
     window.deleteProduct = async function(id, nome) {
-      if (!confirm(`❓ Excluir o produto "${nome}"?`)) return;
+      if (!confirm(`Excluir o produto "${nome}"?`)) return;
       
-      if (!db) {
-        alert('❌ Erro de conexão. Tente novamente.');
+      // USAR BANCO 1 PARA PRODUTOS
+      if (!db1) {
+        alert('Erro de conexao. Tente novamente.');
         return;
       }
       
       try {
-        await db.collection('produtos').doc(id).delete();
-        alert('✅ Produto excluído com sucesso!');
+        await db1.collection('produtos').doc(id).delete();
+        alert('Produto excluido com sucesso!');
       } catch (error) {
-        alert('❌ Erro ao excluir produto: ' + error.message);
+        alert('Erro ao excluir produto: ' + error.message);
       }
     };
 
-    // 🖼️ GERENCIAMENTO DE BANNERS
+    // GERENCIAMENTO DE BANNERS (BANCO 1)
     const updateBannerBtn = document.getElementById('updateBannerBtn');
     if (updateBannerBtn) {
       updateBannerBtn.onclick = async function() {
@@ -2594,21 +2571,22 @@
         const urls = bannerImagesURL.value.split(',').map(s => s.trim()).filter(s => s.startsWith('http') || s.startsWith('data:'));
         
         if (!urls.length) {
-          alert('❌ Insira ao menos uma URL válida');
+          alert('Insira ao menos uma URL valida');
           return;
         }
         
-        if (!db) {
-          alert('❌ Erro de conexão. Tente novamente.');
+        // USAR BANCO 1 PARA BANNERS
+        if (!db1) {
+          alert('Erro de conexao. Tente novamente.');
           return;
         }
         
         try {
-          await db.collection('banners').doc('current').set({ urls });
-          alert('✅ Banner atualizado com sucesso!');
+          await db1.collection('banners').doc('current').set({ urls });
+          alert('Banner atualizado com sucesso!');
           bannerImagesURL.value = '';
         } catch (error) {
-          alert('❌ Erro ao atualizar banner: ' + error.message);
+          alert('Erro ao atualizar banner: ' + error.message);
         }
       };
     }
@@ -2633,33 +2611,34 @@
     }
 
     window.deleteBanner = async function(i) {
-      if (!confirm('❓ Excluir este banner?')) return;
+      if (!confirm('Excluir este banner?')) return;
       
       const newUrls = bannerImages.filter((_, idx) => idx !== i);
       
-      if (!db) {
-        alert('❌ Erro de conexão. Tente novamente.');
+      // USAR BANCO 1 PARA BANNERS
+      if (!db1) {
+        alert('Erro de conexao. Tente novamente.');
         return;
       }
       
       try {
         if (newUrls.length) {
-          await db.collection('banners').doc('current').set({ urls: newUrls });
+          await db1.collection('banners').doc('current').set({ urls: newUrls });
         } else {
-          await db.collection('banners').doc('current').delete();
+          await db1.collection('banners').doc('current').delete();
         }
-        alert('✅ Banner excluído com sucesso!');
+        alert('Banner excluido com sucesso!');
       } catch (error) {
-        alert('❌ Erro ao excluir banner: ' + error.message);
+        alert('Erro ao excluir banner: ' + error.message);
       }
     };
 
-    // 🛡️ TRATAMENTO DE ERROS GLOBAIS
+    // TRATAMENTO DE ERROS GLOBAIS
     window.addEventListener('error', function(e) {
-      console.error('❌ Erro global:', e.error);
+      console.error('Erro global:', e.error);
     });
 
-    // 📸 ZOOM NA IMAGEM PRINCIPAL
+    // ZOOM NA IMAGEM PRINCIPAL
     document.getElementById('detailMainImage').onclick = function(e) {
       e.target.classList.toggle('zoomed');
     };
