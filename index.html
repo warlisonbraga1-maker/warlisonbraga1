@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta name="description" content="Nelma Modas Oficial - Moda Feminina com Elegância e Estilo" />
+  <meta name="description" content="Nelma Modas Oficial - Moda Feminina com Elegância e Estilo. Confira nossa coleção exclusiva!" />
+  <meta name="keywords" content="moda feminina, roupas, vestidos, blusas, calças, saias, moda, Nelma Modas" />
   <title>NELMA MODAS OFICIAL - Moda Feminina Premium</title>
   <link rel="icon" href="https://nelma-modas-oficial.web.app/favicon.png" type="image/png">
   
-  <!-- Otimizações de Performance -->
+  <!-- ========== NOVAS OTIMIZAÇÕES DE PERFORMANCE ========== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="https://www.gstatic.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   
+  <!-- ========== NOVAS META TAGS SEO ========== -->
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="NELMA MODAS OFICIAL - Moda Feminina Premium">
+  <meta property="og:description" content="Moda Feminina com Elegância e Estilo. Confira nossa coleção exclusiva!">
+  <meta property="og:image" content="https://nelma-modas-oficial.web.app/favicon.png">
+  <meta property="og:url" content="https://nelma-modas-oficial.web.app">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NELMA MODAS OFICIAL - Moda Feminina Premium">
+  <meta name="twitter:description" content="Moda Feminina com Elegância e Estilo. Confira nossa coleção exclusiva!">
+  <meta name="twitter:image" content="https://nelma-modas-oficial.web.app/favicon.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
@@ -40,7 +55,11 @@
       box-sizing: border-box;
     }
 
-    /* === TELA DE CARREGAMENTO === */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* === TELA DE CARREGAMENTO OTIMIZADA === */
     #loadingScreen {
       position: fixed;
       top: 0;
@@ -121,8 +140,10 @@
       overflow-x: hidden;
       font-family: 'Poppins', sans-serif;
       transition: var(--transition);
+      line-height: 1.6;
     }
 
+    /* HEADER MELHORADO */
     header {
       background: var(--secondary-color);
       text-align: center;
@@ -132,6 +153,8 @@
       letter-spacing: 2px;
       transition: var(--transition);
       border-bottom: 3px solid #ffffff22;
+      position: relative;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     }
 
     header span {
@@ -142,7 +165,7 @@
       opacity: 0.9;
     }
 
-    /* Banner */
+    /* BANNER MELHORADO */
     .banner-container {
       width: 100%;
       overflow: hidden;
@@ -154,16 +177,93 @@
 
     .banner-slide {
       display: flex;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
 
     .banner-slide img {
       width: 100%;
-      height: 400px;
+      height: 500px;
       object-fit: cover;
+      flex-shrink: 0;
     }
 
-    /* Barra de Busca e Filtros */
+    .banner-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 20px;
+      z-index: 5;
+    }
+
+    .banner-btn {
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--primary-color);
+      font-size: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .banner-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .banner-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      z-index: 5;
+    }
+
+    .banner-indicator {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .banner-indicator.active {
+      background: white;
+      transform: scale(1.2);
+      border-color: var(--accent-color);
+    }
+
+    .banner-indicator:hover {
+      background: rgba(255,255,255,0.8);
+    }
+
+    .banner-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      z-index: 4;
+    }
+
+    /* Barra de Busca e Filtros Melhorada */
     .search-filters {
       text-align: center;
       margin: 30px;
@@ -182,12 +282,14 @@
       font-size: 16px;
       min-width: 250px;
       transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .search-filters input:focus, .search-filters select:focus {
       outline: none;
       border-color: var(--accent-color);
       background: #ffffff;
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.2);
     }
 
     .search-filters input::placeholder {
@@ -201,7 +303,15 @@
       padding: 10px;
     }
 
-    /* Produtos */
+    /* Contador de produtos */
+    .products-count {
+      text-align: center;
+      margin: 10px 0 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Produtos Otimizados */
     .products-wrapper {
       position: relative;
       margin: 0 30px;
@@ -225,6 +335,8 @@
       transform: translateY(30px) scale(0.95);
       border: 1px solid #ffffff15;
       box-shadow: var(--shadow);
+      overflow: hidden;
+      will-change: transform, opacity;
     }
 
     .product.visible {
@@ -279,7 +391,7 @@
       line-height: 1.5;
     }
 
-    /* Sistema de Status */
+    /* Sistema de Status Melhorado */
     .status {
       position: absolute;
       top: 20px;
@@ -308,6 +420,39 @@
       color: #000;
     }
 
+    /* Favoritos */
+    .favorite-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      color: #e74c3c;
+      cursor: pointer;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .favorite-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+
+    .favorite-btn.active {
+      color: #e74c3c;
+    }
+
+    .favorite-btn.active i {
+      font-weight: 900;
+    }
+
     /* Tamanhos */
     .size-options {
       display: flex;
@@ -318,30 +463,36 @@
     }
 
     .size-btn {
-      background: #ffffff44 !important;
+      background: #ffffff44;
       color: var(--text-primary);
       border: 2px solid transparent;
       border-radius: 12px;
       padding: 10px 18px;
       cursor: pointer;
-      transition: var(--transition) !important;
+      transition: var(--transition);
       font-weight: 600;
       min-width: 50px;
     }
 
     .size-btn:hover {
-      background: #ffffff66 !important;
-      transform: translateY(-2px) !important;
+      background: #ffffff66;
+      transform: translateY(-2px);
     }
 
     .size-btn.selected {
-      background: var(--selected-size-color, #1e90ff) !important;
-      color: #fff !important;
-      border-color: var(--selected-size-color, #1e90ff) !important;
-      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3) !important;
+      background: var(--selected-size-color, #1e90ff);
+      color: #fff;
+      border-color: var(--selected-size-color, #1e90ff);
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
     }
 
-    /* Botoes */
+    /* ========== NOVO: FEEDBACK VISUAL PARA TOUCH ========== */
+    .size-btn:active, .btn:active, .favorite-btn:active {
+      transform: scale(0.95);
+      transition: transform 0.1s;
+    }
+
+    /* Botoes Melhorados */
     .btns {
       display: flex;
       justify-content: center;
@@ -373,23 +524,23 @@
     }
 
     .btn-whatsapp {
-      background: linear-gradient(135deg, #25D366, #1ebe57) !important;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3) !important;
+      background: linear-gradient(135deg, #25D366, #1ebe57);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
     }
 
     .btn-whatsapp:hover {
-      background: linear-gradient(135deg, #1ebe57, #25D366) !important;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4) !important;
+      background: linear-gradient(135deg, #1ebe57, #25D366);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
     }
 
     .btn-comprar {
-      background: linear-gradient(135deg, #9b59b6, #8e44ad) !important;
-      box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3) !important;
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
     }
 
     .btn-comprar:hover {
-      background: linear-gradient(135deg, #8e44ad, #9b59b6) !important;
-      box-shadow: 0 8px 20px rgba(155, 89, 182, 0.4) !important;
+      background: linear-gradient(135deg, #8e44ad, #9b59b6);
+      box-shadow: 0 8px 20px rgba(155, 89, 182, 0.4);
     }
 
     /* Navegacao de Produtos */
@@ -417,7 +568,7 @@
       transform: translateY(-2px);
     }
 
-    /* Modal de Detalhes */
+    /* Modal de Detalhes Melhorado */
     .modal {
       display: none;
       position: fixed;
@@ -429,6 +580,7 @@
       justify-content: center;
       align-items: center;
       z-index: 2000;
+      padding: 20px;
     }
 
     .modal-content {
@@ -451,6 +603,7 @@
       overflow-x: auto;
       margin: 20px 0;
       padding: 10px 0;
+      justify-content: center;
     }
 
     #detailImages img {
@@ -486,7 +639,7 @@
       cursor: zoom-out;
     }
 
-    /* Botoes Flutuantes */
+    /* Botoes Flutuantes Melhorados - MOBILE OTIMIZADO */
     #adminBtn {
       position: fixed;
       bottom: 30px;
@@ -533,6 +686,32 @@
 
     #instaFloatBtn:hover {
       transform: scale(1.15);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    /* Botão Voltar ao Topo */
+    #backToTop {
+      position: fixed;
+      bottom: 180px;
+      right: 30px;
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 3000;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: var(--transition);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #backToTop:hover {
+      transform: scale(1.1);
       box-shadow: 0 12px 30px rgba(0,0,0,0.4);
     }
 
@@ -684,7 +863,7 @@
       background: #ffffff22;
     }
 
-    /* Newsletter */
+    /* Newsletter Melhorada */
     .newsletter {
       background: var(--bg-card);
       padding: 40px 30px;
@@ -742,7 +921,7 @@
       flex-shrink: 0;
     }
 
-    /* Footer */
+    /* Footer Melhorado */
     footer {
       background: var(--secondary-color);
       text-align: center;
@@ -766,7 +945,138 @@
       text-decoration: underline;
     }
 
-    /* Responsividade */
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-weight: normal;
+    }
+
+    /* Seção de Favoritos */
+    .favorites-section {
+      margin: 30px;
+      padding: 30px;
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      border: 1px solid #ffffff15;
+      box-shadow: var(--shadow);
+    }
+
+    .favorites-section h3 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 1.8em;
+      color: var(--text-primary);
+    }
+
+    .favorites-empty {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+
+    .favorites-empty i {
+      font-size: 3em;
+      margin-bottom: 15px;
+      opacity: 0.5;
+    }
+
+    /* NOVO: Indicador de Novos Produtos */
+    .new-badge {
+      position: absolute;
+      top: 20px;
+      right: 70px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      animation: pulse 2s infinite;
+    }
+
+    /* NOVO: Efeito de esqueleto para carregamento */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 4px;
+    }
+
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .skeleton-image {
+      width: 100%;
+      height: 380px;
+      border-radius: 12px;
+    }
+
+    .skeleton-text {
+      height: 20px;
+      margin: 10px 0;
+    }
+
+    .skeleton-text.short {
+      width: 60%;
+    }
+
+    /* NOVO: Toast de notificação */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--success-color);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 4000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    .toast.error {
+      background: var(--warning-color);
+    }
+
+    /* NOVO: Barra de progresso */
+    .progress-bar {
+      height: 4px;
+      background: var(--accent-color);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      z-index: 9998;
+      transition: width 0.3s ease;
+    }
+
+    /* ========== NOVAS OTIMIZAÇÕES MOBILE ========== */
     @media (max-width: 768px) {
       .products {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -774,7 +1084,17 @@
       }
 
       .banner-slide img {
-        height: 250px;
+        height: 350px;
+      }
+
+      .banner-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .banner-controls {
+        padding: 0 10px;
       }
 
       .product img {
@@ -792,21 +1112,44 @@
         max-width: 350px;
       }
 
-      #adminBtn, #instaFloatBtn {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
+      /* BOTÕES FLUTUANTES OTIMIZADOS PARA MOBILE */
+      #adminBtn, #instaFloatBtn, #backToTop {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        min-width: 44px;
+        min-height: 44px;
+      }
+      
+      #adminBtn {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      #instaFloatBtn {
+        bottom: 80px;
+        left: 20px;
+      }
+      
+      #backToTop {
+        bottom: 140px;
+        right: 20px;
+      }
+      
+      #adminBtn:hover, #instaFloatBtn:hover, #backToTop:hover {
+        transform: scale(1.05);
+      }
+
+      /* MELHORIAS DE TOUCH */
+      .btn, .size-btn, .favorite-btn {
+        min-height: 44px;
+        min-width: 44px;
       }
 
       #adminPanel {
         width: 320px;
         bottom: 100px;
         right: 15px;
-      }
-
-      #instaFloatBtn {
-        bottom: 100px;
-        left: 15px;
       }
 
       .newsletter {
@@ -816,6 +1159,74 @@
 
       .newsletter-form {
         flex-direction: column;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .modal-content {
+        padding: 20px 15px;
+      }
+
+      header {
+        font-size: 26px;
+        padding: 20px 0;
+      }
+
+      header span {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+      
+      .product {
+        padding: 20px;
+      }
+      
+      .btns {
+        flex-direction: column;
+      }
+      
+      .btn {
+        justify-content: center;
+      }
+      
+      .banner-slide img {
+        height: 250px;
+      }
+      
+      .banner-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+      
+      /* BOTÕES FLUTUANTES AINDA MENORES PARA TELAS MUITO PEQUENAS */
+      #adminBtn, #instaFloatBtn, #backToTop {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      #adminBtn {
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      #instaFloatBtn {
+        bottom: 70px;
+        left: 15px;
+      }
+      
+      #backToTop {
+        bottom: 125px;
+        right: 15px;
       }
     }
 
@@ -992,9 +1403,40 @@
       font-size: 10px;
       border: 1px solid #555;
     }
+
+    /* Animações adicionais */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 0.6s ease forwards;
+    }
+
+    .slide-in-right {
+      animation: slideInRight 0.6s ease forwards;
+    }
   </style>
 </head>
 <body>
+  <!-- Barra de progresso -->
+  <div class="progress-bar" id="progressBar"></div>
+
   <!-- TELA DE CARREGAMENTO -->
   <div id="loadingScreen">
     <div class="loader">
@@ -1002,7 +1444,7 @@
       <div class="dots">
         <span></span><span></span><span></span>
       </div>
-      <p style="margin-top: 20px; font-size: 16px; opacity: 0.8;">Carregando nossa colecao exclusiva...</p>
+      <p style="margin-top: 20px; font-size: 16px; opacity: 0.8;">Carregando nossa coleção exclusiva...</p>
     </div>
   </div>
 
@@ -1010,11 +1452,22 @@
   <div class="main-content" id="mainContent">
     <header>
       NELMA MODAS OFICIAL
-      <span>Moda Feminina • Elegância • Qualidade • Entrega para Todo Brasil</span>
+      <span>Moda Feminina • Elegância • Qualidade</span>
     </header>
 
+    <!-- Banner Melhorado -->
     <div class="banner-container">
       <div class="banner-slide" id="bannerSlide"></div>
+      <div class="banner-controls">
+        <button class="banner-btn" id="prevBanner">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="banner-btn" id="nextBanner">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="banner-indicators" id="bannerIndicators"></div>
+      <div class="banner-overlay"></div>
     </div>
 
     <!-- Barra de Busca e Filtros -->
@@ -1022,32 +1475,44 @@
       <input type="text" id="searchInput" placeholder="Buscar produtos...">
       <select id="statusFilter">
         <option value="">Todos os status</option>
-        <option value="disponivel">Disponivel</option>
+        <option value="disponivel">Disponível</option>
         <option value="sobpedido">Sob Pedido</option>
-        <option value="promocao">Promocao</option>
+        <option value="promocao">Promoção</option>
       </select>
       <select id="categoryFilter">
         <option value="">Todas categorias</option>
         <option value="vestidos">Vestidos</option>
         <option value="blusas">Blusas</option>
-        <option value="calcas">Calcas</option>
+        <option value="calcas">Calças</option>
         <option value="saias">Saias</option>
       </select>
+      <button class="btn" id="toggleFavorites" style="background: #e74c3c;">
+        <i class="fas fa-heart"></i> Favoritos
+      </button>
     </div>
+
+    <!-- Contador de produtos -->
+    <div class="products-count" id="productsCount"></div>
 
     <!-- Lista de Produtos -->
     <div class="products-wrapper">
       <div class="products" id="productList"></div>
       <div class="product-nav">
         <button id="prevProduct">Anterior</button>
-        <button id="nextProduct">Proximo</button>
+        <button id="nextProduct">Próximo</button>
       </div>
+    </div>
+
+    <!-- Seção de Favoritos -->
+    <div class="favorites-section" id="favoritesSection" style="display: none;">
+      <h3><i class="fas fa-heart"></i> Meus Favoritos</h3>
+      <div class="products" id="favoritesList"></div>
     </div>
 
     <!-- Newsletter -->
     <div class="newsletter">
       <h3>Fique por Dentro das Novidades</h3>
-      <p>Cadastre-se para receber lancamentos exclusivos, promocoes especiais e dicas de moda diretamente no seu e-mail</p>
+      <p>Cadastre-se para receber lançamentos exclusivos, promoções especiais e dicas de moda diretamente no seu e-mail</p>
       <div class="newsletter-form">
         <input type="email" id="newsletterEmail" placeholder="Seu melhor e-mail">
         <button class="btn" onclick="cadastrarNewsletter()">
@@ -1075,14 +1540,18 @@
       </div>
     </div>
 
-    <!-- Botoes Flutuantes -->
-    <button id="adminBtn" title="Painel Administrativo">
+    <!-- Botoes Flutuantes OTIMIZADOS PARA MOBILE -->
+    <button id="adminBtn" title="Painel Administrativo" aria-label="Abrir painel administrativo">
       <i class="fas fa-cog"></i>
     </button>
 
-    <a href="https://instagram.com/nelmamodasoficial" target="_blank" id="instaFloatBtn" title="Siga nosso Instagram">
+    <a href="https://instagram.com/nelmamodasoficial" target="_blank" id="instaFloatBtn" title="Siga nosso Instagram" aria-label="Siga nosso Instagram">
       <i class="fab fa-instagram"></i>
     </a>
+
+    <button id="backToTop" title="Voltar ao topo" aria-label="Voltar ao topo">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Painel Administrativo -->
     <div id="adminPanel">
@@ -1104,7 +1573,7 @@
           <button class="admin-tab active" data-tab="produtos">Produtos</button>
           <button class="admin-tab" data-tab="cores">Cores</button>
           <button class="admin-tab" data-tab="banners">Banners</button>
-          <button class="admin-tab" data-tab="codigo">Codigo</button>
+          <button class="admin-tab" data-tab="codigo">Código</button>
         </div>
 
         <!-- Aba Produtos -->
@@ -1112,16 +1581,16 @@
           <h4>Adicionar Produto</h4>
           <input type="text" id="productName" placeholder="Nome do Produto">
           <select id="productStatus">
-            <option value="disponivel">Disponivel</option>
+            <option value="disponivel">Disponível</option>
             <option value="sobpedido">Sob Pedido</option>
-            <option value="promocao">Promocao</option>
+            <option value="promocao">Promoção</option>
           </select>
           <input type="text" id="productSizes" placeholder="Tamanhos (P, M, G, GG)">
           <input type="text" id="mainImageURL" placeholder="URL da Imagem Principal">
           
           <!-- Cortador de Imagens -->
           <div class="crop-image-cropper" id="imageCropper">
-            <p style="margin-bottom: 15px; font-weight: 600;">Cortador de Imagens (Proporcao 3:4)</p>
+            <p style="margin-bottom: 15px; font-weight: 600;">Cortador de Imagens (Proporção 3:4)</p>
             <input type="text" id="cropImageInput" placeholder="Cole a URL da imagem para cortar" style="margin-bottom:10px;">
             <button type="button" id="loadCropImage" class="btn" style="background:#27ae60;margin-bottom:10px;width:100%;">
               <i class="fas fa-download"></i> Carregar Imagem
@@ -1137,7 +1606,7 @@
                 <i class="fas fa-times"></i> Cancelar
               </button>
             </div>
-            <input type="text" id="croppedUrlOutput" placeholder="URL da imagem cortada aparecera aqui" readonly>
+            <input type="text" id="croppedUrlOutput" placeholder="URL da imagem cortada aparecerá aqui" readonly>
             <button type="button" id="copyCroppedUrl" class="btn" style="background:#27ae60;margin-top:8px;display:none;width:100%;">
               <i class="fas fa-copy"></i> Copiar URL
             </button>
@@ -1148,7 +1617,7 @@
             <i class="fas fa-crop-alt"></i> Abrir Ferramenta de Corte
           </button>
           
-          <input type="text" id="detailImagesURL" placeholder="URLs das imagens de detalhe (separar por virgula)">
+          <input type="text" id="detailImagesURL" placeholder="URLs das imagens de detalhe (separar por vírgula)">
           <button id="addProductBtn" style="background:#27ae60;">
             <i class="fas fa-plus"></i> Adicionar Produto
           </button>
@@ -1166,11 +1635,11 @@
               <input type="color" id="colorBodyBg" value="#e87474">
             </div>
             <div class="color-picker-group">
-              <label>Cabecalho</label>
+              <label>Cabeçalho</label>
               <input type="color" id="colorHeaderBg" value="#ef8184">
             </div>
             <div class="color-picker-group">
-              <label>Botoes</label>
+              <label>Botões</label>
               <input type="color" id="colorButtonBg" value="#1e90ff">
             </div>
             <div class="color-picker-group">
@@ -1182,7 +1651,7 @@
               <input type="color" id="colorCardBg" value="#ffffff22">
             </div>
             <div class="color-picker-group">
-              <label>Disponivel</label>
+              <label>Disponível</label>
               <input type="color" id="colorDisponivelBg" value="#32CD32">
             </div>
             <div class="color-picker-group">
@@ -1201,10 +1670,10 @@
           <div style="margin-top: 25px; padding: 15px; background: #ffffff22; border-radius: 12px;">
             <h5>Dicas de Cores</h5>
             <p style="font-size: 13px; margin: 0 0 10px 0;">
-              • <strong>Tamanho Selecionado</strong>: Define a cor quando um tamanho e clicado na grade de produtos
+              • <strong>Tamanho Selecionado</strong>: Define a cor quando um tamanho é clicado na grade de produtos
             </p>
             <p style="font-size: 13px; margin: 0;">
-              • <strong>Grade de Produtos</strong>: Use cores com transparencia (ex: #ffffff22) para manter o efeito glassmorphism
+              • <strong>Grade de Produtos</strong>: Use cores com transparência (ex: #ffffff22) para manter o efeito glassmorphism
             </p>
           </div>
         </div>
@@ -1212,7 +1681,7 @@
         <!-- Aba Banners -->
         <div id="tab-banners" class="admin-tab-content">
           <h4>Gerenciar Banner</h4>
-          <input type="text" id="bannerImagesURL" placeholder="URLs dos banners (separar por virgula)">
+          <input type="text" id="bannerImagesURL" placeholder="URLs dos banners (separar por vírgula)">
           <button id="updateBannerBtn" style="background:#3498db;">
             <i class="fas fa-sync"></i> Atualizar Banner
           </button>
@@ -1220,20 +1689,20 @@
           <div id="adminBanners"></div>
         </div>
 
-        <!-- Aba Codigo -->
+        <!-- Aba Código -->
         <div id="tab-codigo" class="admin-tab-content">
-          <h4>Editor de Codigo</h4>
+          <h4>Editor de Código</h4>
           <div style="margin:25px 0;padding:20px;background:#1e90ff22;border-radius:12px;">
             <div style="display:flex;gap:8px;margin-bottom:12px;">
               <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">
-                <i class="fas fa-code"></i> Carregar Codigo
+                <i class="fas fa-code"></i> Carregar Código
               </button>
               <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">
-                <i class="fas fa-vial"></i> Testar Codigo
+                <i class="fas fa-vial"></i> Testar Código
               </button>
             </div>
             
-            <!-- BARRA DE PESQUISA ADICIONADA AQUI -->
+            <!-- BARRA DE PESQUISA -->
             <div style="margin-bottom:12px;position:relative;">
               <div style="display:flex;gap:8px;align-items:center;">
                 <div style="position:relative;flex:1;">
@@ -1245,7 +1714,7 @@
                   <i class="fas fa-chevron-up"></i> Anterior
                 </button>
                 <button id="nextMatchBtn" class="btn" style="background:#3498db;padding:12px 15px;white-space:nowrap;">
-                  <i class="fas fa-chevron-down"></i> Proximo
+                  <i class="fas fa-chevron-down"></i> Próximo
                 </button>
                 <button id="clearSearchBtn" class="btn" style="background:#e74c3c;padding:12px 15px;white-space:nowrap;">
                   <i class="fas fa-times"></i> Limpar
@@ -1255,21 +1724,21 @@
                 <span id="matchCount">0</span> resultados encontrados
               </div>
               <div class="search-shortcuts">
-                <kbd>Ctrl+F</kbd> Buscar • <kbd>Ctrl+G</kbd> Proximo • <kbd>Ctrl+Shift+G</kbd> Anterior
+                <kbd>Ctrl+F</kbd> Buscar • <kbd>Ctrl+G</kbd> Próximo • <kbd>Ctrl+Shift+G</kbd> Anterior
               </div>
             </div>
             
-            <textarea id="codeEditor" placeholder="Cole ou edite o codigo HTML/CSS/JS aqui..." 
+            <textarea id="codeEditor" placeholder="Cole ou edite o código HTML/CSS/JS aqui..." 
                       style="width:100%;height:250px;font-family:'Courier New',monospace;font-size:13px;background:#000;color:#0f0;padding:12px;border-radius:8px;border:2px solid #fff4;resize:vertical;"></textarea>
             
             <div style="display:flex;gap:8px;margin-top:12px;">
-              <input type="text" id="newVersionNum" placeholder="Versao (ex: 2.1)" style="flex:1;">
-              <input type="text" id="newVersionName" placeholder="Nome da versao" style="flex:1;">
+              <input type="text" id="newVersionNum" placeholder="Versão (ex: 2.1)" style="flex:1;">
+              <input type="text" id="newVersionName" placeholder="Nome da versão" style="flex:1;">
             </div>
-            <textarea id="versionChanges" placeholder="Descreva as mudancas realizadas..." 
+            <textarea id="versionChanges" placeholder="Descreva as mudanças realizadas..." 
                       style="width:100%;height:60px;margin-top:8px;font-size:12px;padding:10px;border-radius:8px;border:2px solid #ffffff44;background:#ffffff22;color:#fff;"></textarea>
             <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:12px;width:100%;">
-              <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSAO
+              <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSÃO
             </button>
             <p id="codeStatus" style="margin:12px 0 0;font-size:13px;color:#ff0;text-align:center;"></p>
           </div>
@@ -1282,18 +1751,43 @@
     </div>
 
     <footer>
+      <div class="footer-links">
+        <a href="#sobre">Sobre Nós</a>
+        <a href="#politica">Política de Entrega</a>
+        <a href="#trocas">Trocas e Devoluções</a>
+        <a href="#contato">Contato</a>
+      </div>
       <p style="margin-bottom: 10px;">Siga-nos no Instagram: <a href="https://instagram.com/nelmamodasoficial" target="_blank">@nelmamodasoficial</a></p>
       <p style="margin-bottom: 5px;">Entre em contato via WhatsApp: <a href="https://wa.me/5594992936856" target="_blank">(94) 99293-6856</a></p>
       <p>© 2025 NELMA MODAS OFICIAL - Todos os direitos reservados.</p>
     </footer>
   </div>
 
+  <!-- ========== SCHEMA MARKUP PARA SEO ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": "NELMA MODAS OFICIAL",
+    "image": "https://nelma-modas-oficial.web.app/favicon.png",
+    "description": "Moda Feminina com Elegância e Estilo. Confira nossa coleção exclusiva!",
+    "url": "https://nelma-modas-oficial.web.app",
+    "telephone": "+5594992936856",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "BR"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "$$"
+  }
+  </script>
+
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
 
   <script>
-    // CONFIGURACAO DOS DOIS BANCOS FIREBASE
+    // ========== CONFIGURAÇÃO DOS DOIS BANCOS FIREBASE ==========
     
     // BANCO 1 - ORIGINAL (Produtos, banners, newsletter)
     const firebaseConfig1 = {
@@ -1305,7 +1799,7 @@
       appId: "1:171368002339:web:8a279e85ffe64cf8749296"
     };
 
-    // BANCO 2 - NOVO (Atualizacoes do site)
+    // BANCO 2 - NOVO (Atualizações do site)
     const firebaseConfig2 = {
       apiKey: "AIzaSyDXaBq97ZeB7ghN6ELW-URTDowFWUQfuns",
       authDomain: "nelmamodas2.firebaseapp.com",
@@ -1315,25 +1809,8 @@
       appId: "1:459051033356:web:dd09b81fc4e9a84b0e1f29"
     };
 
-    // INICIALIZAR DOIS BANCOS FIREBASE
+    // ========== VARIÁVEIS GLOBAIS ==========
     let db1, db2;
-    try {
-      // Banco 1 - Produtos
-      const app1 = firebase.initializeApp(firebaseConfig1, "app1");
-      db1 = firebase.firestore(app1);
-      
-      // Banco 2 - Atualizacoes
-      const app2 = firebase.initializeApp(firebaseConfig2, "app2");
-      db2 = firebase.firestore(app2);
-      
-      console.log('Dois bancos Firebase inicializados com sucesso');
-      console.log('Banco 1 (Produtos):', firebaseConfig1.projectId);
-      console.log('Banco 2 (Atualizacoes):', firebaseConfig2.projectId);
-    } catch (error) {
-      console.error('Erro ao inicializar Firebase:', error);
-    }
-
-    // VARIAVEIS GLOBAIS
     let productsData = [];
     let loaded = false;
     let bannerImages = [];
@@ -1349,21 +1826,66 @@
       selectedSizeColor: '#1e90ff'
     };
 
-    // VARIAVEIS PARA A BUSCA NO EDITOR DE CODIGO
+    // VARIÁVEIS PARA A BUSCA NO EDITOR DE CÓDIGO
     let searchMatches = [];
     let currentMatchIndex = -1;
 
-    // INICIALIZACAO DA APLICACAO
+    // VARIÁVEIS PARA O SISTEMA DE FAVORITOS
+    let favorites = JSON.parse(localStorage.getItem('nelma_favorites')) || [];
+    let currentView = 'products';
+    
+    // VARIÁVEIS PARA O BANNER MELHORADO
+    let currentBannerIndex = 0;
+    let bannerInterval;
+
+    // ========== NOVAS FUNÇÕES DE OTIMIZAÇÃO ==========
+
+    // FUNÇÃO DEBounce PARA PERFORMANCE
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    // FUNÇÃO DE TRACKING PARA ANALYTICS
+    function trackEvent(category, action, label) {
+      console.log('Track Event:', category, action, label);
+      // Implemente Google Analytics ou Facebook Pixel aqui depois
+      if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+          'event_category': category,
+          'event_label': label
+        });
+      }
+    }
+
+    // PRELOAD DE IMAGENS CRÍTICAS
+    function preloadCriticalImages() {
+      if (bannerImages.length > 0) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = bannerImages[0];
+        document.head.appendChild(link);
+      }
+    }
+
+    // ========== INICIALIZAÇÃO DA APLICAÇÃO ==========
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM Carregado - Iniciando aplicacao...');
+      console.log('DOM Carregado - Iniciando aplicação...');
       initApp();
     });
 
-    // FUNCAO PRINCIPAL DE INICIALIZACAO
+    // FUNÇÃO PRINCIPAL DE INICIALIZAÇÃO
     function initApp() {
-      console.log('Iniciando aplicacao Nelma Modas...');
+      console.log('Iniciando aplicação Nelma Modas...');
       
-      // Garantir que a tela de loading esta visivel
       const loadingScreen = document.getElementById('loadingScreen');
       const mainContent = document.getElementById('mainContent');
       
@@ -1371,16 +1893,12 @@
       loadingScreen.style.opacity = '1';
       mainContent.classList.remove('loaded');
 
-      // Configurar event listeners
       setupEventListeners();
-      
-      // Carregar dados do Firebase
       loadInitialData();
       
-      // Timeout de seguranca
       setTimeout(() => {
         if (!loaded) {
-          console.log('Timeout de seguranca ativado');
+          console.log('Timeout de segurança ativado');
           hideLoading();
         }
       }, 10000);
@@ -1389,19 +1907,27 @@
     // CARREGAR DADOS INICIAIS
     function loadInitialData() {
       if (!db1) {
-        console.error('Firebase nao inicializado');
-        showError('Erro de conexao. Recarregue a pagina.');
-        return;
+        initializeFirebase();
       }
       
-      // Carregar tema
       loadTheme();
-      
-      // Carregar produtos
       loadProducts();
-      
-      // Carregar banners
       loadBanners();
+    }
+
+    // INICIALIZAR FIREBASE
+    function initializeFirebase() {
+      try {
+        const app1 = firebase.initializeApp(firebaseConfig1, "app1");
+        db1 = firebase.firestore(app1);
+        
+        const app2 = firebase.initializeApp(firebaseConfig2, "app2");
+        db2 = firebase.firestore(app2);
+        
+        console.log('Dois bancos Firebase inicializados com sucesso');
+      } catch (error) {
+        console.error('Erro ao inicializar Firebase:', error);
+      }
     }
 
     // CARREGAR TEMA (BANCO 1)
@@ -1431,10 +1957,7 @@
         document.getElementById('adminPanel').style.backgroundColor = theme.adminBg;
       }
       
-      // Aplicar cor da grade de produtos
       document.documentElement.style.setProperty('--bg-card', theme.cardBg);
-      
-      // Aplicar cor do tamanho selecionado
       document.documentElement.style.setProperty('--selected-size-color', theme.selectedSizeColor || '#1e90ff');
       
       document.querySelectorAll('.status.disponivel').forEach(el => {
@@ -1445,7 +1968,6 @@
         el.style.backgroundColor = theme.sobpedidoBg;
       });
       
-      // Aplicar cores aos botoes
       document.querySelectorAll('.btn:not(.btn-whatsapp):not(.btn-comprar)').forEach(btn => {
         btn.style.backgroundColor = theme.buttonBg;
       });
@@ -1454,7 +1976,7 @@
     // CARREGAR PRODUTOS (BANCO 1)
     function loadProducts() {
       if (!db1) {
-        console.error('Firebase nao disponivel para carregar produtos');
+        console.error('Firebase não disponível para carregar produtos');
         return;
       }
       
@@ -1486,18 +2008,95 @@
         (doc) => {
           bannerImages = doc.exists && doc.data().urls?.length ? 
             doc.data().urls : 
-            ["https://via.placeholder.com/1200x400/ef8184/ffffff?text=Nelma+Modas+Oficial"];
+            ["https://via.placeholder.com/1200x500/ef8184/ffffff?text=Nelma+Modas+Oficial"];
           
           renderBanners();
           updateAdminBannersList();
+          preloadCriticalImages();
         },
         (error) => {
           console.error('Erro ao carregar banners:', error);
-          bannerImages = ["https://via.placeholder.com/1200x400/ef8184/ffffff?text=Nelma+Modas+Oficial"];
+          bannerImages = ["https://via.placeholder.com/1200x500/ef8184/ffffff?text=Nelma+Modas+Oficial"];
           renderBanners();
         }
       );
     }
+
+    // RENDERIZAR BANNERS MELHORADO
+    function renderBanners() {
+      const bannerSlide = document.getElementById('bannerSlide');
+      const bannerIndicators = document.getElementById('bannerIndicators');
+      
+      if (!bannerSlide) return;
+      
+      bannerSlide.innerHTML = bannerImages.map(url => 
+        `<img src="${url}" alt="Banner Nelma Modas" loading="lazy"
+              onerror="this.src='https://via.placeholder.com/1200x500/ef8184/ffffff?text=Banner+Indisponível'">`
+      ).join('');
+
+      if (bannerIndicators) {
+        bannerIndicators.innerHTML = '';
+        bannerImages.forEach((_, index) => {
+          const indicator = document.createElement('div');
+          indicator.className = `banner-indicator ${index === 0 ? 'active' : ''}`;
+          indicator.onclick = () => goToBannerSlide(index);
+          bannerIndicators.appendChild(indicator);
+        });
+      }
+
+      updateBannerSlide(0);
+      
+      if (bannerImages.length > 1) {
+        startBannerSlideshow();
+      }
+    }
+
+    function startBannerSlideshow() {
+      if (bannerInterval) {
+        clearInterval(bannerInterval);
+      }
+      
+      bannerInterval = setInterval(() => {
+        currentBannerIndex = (currentBannerIndex + 1) % bannerImages.length;
+        updateBannerSlide(currentBannerIndex);
+      }, 5000);
+    }
+
+    function updateBannerSlide(index) {
+      const bannerSlide = document.getElementById('bannerSlide');
+      const indicators = document.querySelectorAll('.banner-indicator');
+      
+      if (bannerSlide) {
+        bannerSlide.style.transform = `translateX(-${index * 100}%)`;
+      }
+      
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+      });
+      
+      currentBannerIndex = index;
+    }
+
+    function goToBannerSlide(index) {
+      if (bannerImages.length > 1) {
+        clearInterval(bannerInterval);
+        startBannerSlideshow();
+      }
+      
+      updateBannerSlide(index);
+    }
+
+    function nextBannerSlide() {
+      const nextIndex = (currentBannerIndex + 1) % bannerImages.length;
+      goToBannerSlide(nextIndex);
+    }
+
+    function prevBannerSlide() {
+      const prevIndex = (currentBannerIndex - 1 + bannerImages.length) % bannerImages.length;
+      goToBannerSlide(prevIndex);
+    }
+
+    // ========== SISTEMA DE PRODUTOS OTIMIZADO ==========
 
     // FILTRAR E RENDERIZAR PRODUTOS
     function filterAndRenderProducts() {
@@ -1515,9 +2114,16 @@
       renderProducts(filtered);
     }
 
+    // RENDERIZAR PRODUTOS COM INTERSECTION OBSERVER
     function renderProducts(products) {
       const productList = document.getElementById('productList');
+      const productsCount = document.getElementById('productsCount');
+      
       if (!productList) return;
+      
+      if (productsCount) {
+        productsCount.textContent = `${products.length} produto${products.length !== 1 ? 's' : ''} encontrado${products.length !== 1 ? 's' : ''}`;
+      }
       
       if (products.length === 0) {
         productList.innerHTML = `
@@ -1540,12 +2146,21 @@
           ? product.mainImage 
           : 'https://via.placeholder.com/600x800/ef8184/ffffff?text=Produto+Nelma+Modas';
         
+        const isFavorite = favorites.includes(product._id);
+        
+        const isNew = product.createdAt && 
+          (new Date() - product.createdAt.toDate()) < (7 * 24 * 60 * 60 * 1000);
+        
         return `
           <div class="product" style="animation-delay: ${index * 0.1}s">
             <span class="status ${product.status}">
-              ${product.status === 'disponivel' ? 'Disponivel' : product.status === 'sobpedido' ? 'Sob Pedido' : 'Promocao'}
+              ${product.status === 'disponivel' ? 'Disponível' : product.status === 'sobpedido' ? 'Sob Pedido' : 'Promoção'}
             </span>
-            <img src="${safeImg}" alt="${product.nome}" onclick="openDetailModal('${product._id}')">
+            ${isNew ? '<span class="new-badge">Novo</span>' : ''}
+            <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite('${product._id}')" aria-label="${isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+              <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
+            </button>
+            <img src="${safeImg}" alt="${product.nome}" onclick="openDetailModal('${product._id}')" loading="lazy">
             <h3>${product.nome}</h3>
             ${product.descricao ? `<p class="product-description">${product.descricao}</p>` : ''}
             <div class="size-options">${sizeBtns}</div>
@@ -1561,48 +2176,27 @@
         `;
       }).join('');
 
-      // Animar produtos
-      setTimeout(() => {
-        document.querySelectorAll('.product').forEach((product, index) => {
-          setTimeout(() => {
-            product.classList.add('visible');
-          }, index * 100);
+      // USAR INTERSECTION OBSERVER PARA ANIMAÇÃO
+      const productElements = document.querySelectorAll('.product');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
+            observer.unobserve(entry.target);
+          }
         });
-      }, 100);
+      }, { threshold: 0.1 });
+
+      productElements.forEach(product => {
+        observer.observe(product);
+      });
       
       applyTheme();
     }
 
-    // RENDERIZAR BANNERS
-    function renderBanners() {
-      const bannerSlide = document.getElementById('bannerSlide');
-      if (!bannerSlide) return;
-      
-      bannerSlide.innerHTML = bannerImages.map(url => 
-        `<img src="${url}" alt="Banner Nelma Modas" 
-              onerror="this.src='https://via.placeholder.com/1200x400/ef8184/ffffff?text=Banner+Indisponivel'">`
-      ).join('');
-
-      // Slideshow automatico
-      if (bannerImages.length > 1) {
-        startBannerSlideshow();
-      }
-    }
-
-    function startBannerSlideshow() {
-      let currentIndex = 0;
-      const bannerSlide = document.getElementById('bannerSlide');
-      if (!bannerSlide) return;
-      
-      const totalBanners = bannerSlide.children.length;
-      
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalBanners;
-        bannerSlide.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }, 5000);
-    }
-
-    // FUNCAO PARA ESCONDER LOADING
+    // FUNÇÃO PARA ESCONDER LOADING
     function hideLoading() {
       if (loaded) return;
       
@@ -1617,11 +2211,14 @@
       setTimeout(() => {
         loadingScreen.style.display = 'none';
         mainContent.classList.add('loaded');
-        console.log('Aplicacao carregada com sucesso!');
+        console.log('Aplicação carregada com sucesso!');
+        
+        // TRACKING DE CARREGAMENTO
+        trackEvent('performance', 'page_loaded', 'homepage');
       }, 800);
     }
 
-    // FUNCAO DE ERRO
+    // FUNÇÃO DE ERRO
     function showError(message) {
       const loadingScreen = document.getElementById('loadingScreen');
       if (!loadingScreen) return;
@@ -1641,7 +2238,51 @@
       `;
     }
 
-    // NEWSLETTER (BANCO 1)
+    // ========== NOVAS FUNÇÕES DE UX ==========
+
+    // TOAST DE NOTIFICAÇÃO
+    function showToast(message, type = 'success') {
+      const existingToast = document.querySelector('.toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+      
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        <span>${message}</span>
+      `;
+      
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 100);
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    // BARRA DE PROGRESSO
+    function updateProgressBar() {
+      const progressBar = document.getElementById('progressBar');
+      if (!progressBar) return;
+      
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollProgress = (scrollTop / scrollHeight) * 100;
+      
+      progressBar.style.width = scrollProgress + '%';
+    }
+
+    // ========== NEWSLETTER ==========
     async function cadastrarNewsletter() {
       const emailInput = document.getElementById('newsletterEmail');
       if (!emailInput) return;
@@ -1649,17 +2290,16 @@
       const email = emailInput.value.trim();
       
       if (!email) {
-        showNewsletterMessage('Por favor, insira um e-mail valido', 'error');
+        showNewsletterMessage('Por favor, insira um e-mail válido', 'error');
         return;
       }
       
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        showNewsletterMessage('Por favor, insira um e-mail valido', 'error');
+        showNewsletterMessage('Por favor, insira um e-mail válido', 'error');
         return;
       }
       
-      // Usar Banco 1 para newsletter
       if (db1) {
         try {
           const snapshot = await db1.collection('newsletter')
@@ -1667,7 +2307,7 @@
             .get();
           
           if (!snapshot.empty) {
-            showNewsletterMessage('Este e-mail ja esta cadastrado!', 'success');
+            showNewsletterMessage('Este e-mail já está cadastrado!', 'success');
             emailInput.value = '';
             return;
           }
@@ -1679,8 +2319,10 @@
             ativo: true
           });
           
-          showNewsletterMessage('E-mail cadastrado com sucesso! Voce recebera nossas novidades em breve.', 'success');
+          showNewsletterMessage('E-mail cadastrado com sucesso! Você receberá nossas novidades em breve.', 'success');
           emailInput.value = '';
+          showToast('E-mail cadastrado com sucesso!');
+          trackEvent('newsletter', 'cadastro', 'sucesso');
           return;
           
         } catch (error) {
@@ -1693,7 +2335,7 @@
         let newsletters = JSON.parse(localStorage.getItem('nelma_newsletter') || '[]');
         
         if (newsletters.includes(email)) {
-          showNewsletterMessage('Este e-mail ja esta cadastrado!', 'success');
+          showNewsletterMessage('Este e-mail já está cadastrado!', 'success');
           emailInput.value = '';
           return;
         }
@@ -1701,16 +2343,18 @@
         newsletters.push(email);
         localStorage.setItem('nelma_newsletter', JSON.stringify(newsletters));
         
-        showNewsletterMessage('E-mail cadastrado com sucesso! Voce recebera nossas novidades em breve.', 'success');
+        showNewsletterMessage('E-mail cadastrado com sucesso! Você receberá nossas novidades em breve.', 'success');
         emailInput.value = '';
+        showToast('E-mail cadastrado com sucesso!');
+        trackEvent('newsletter', 'cadastro', 'sucesso');
         
       } catch (error) {
         console.error('Erro no fallback:', error);
         showNewsletterMessage('Erro ao cadastrar. Tente novamente.', 'error');
+        showToast('Erro ao cadastrar. Tente novamente.', 'error');
       }
     }
 
-    // Funcao para mostrar mensagens na newsletter
     function showNewsletterMessage(message, type) {
       const messageDiv = document.getElementById('newsletterMessage');
       if (!messageDiv) return;
@@ -1719,16 +2363,18 @@
       messageDiv.className = 'newsletter-message ' + (type === 'success' ? 'newsletter-success' : 'newsletter-error');
       messageDiv.style.display = 'block';
       
-      // Auto-remover apos 5 segundos
       setTimeout(() => {
         messageDiv.style.display = 'none';
       }, 5000);
     }
 
-    // COMPRAR PELO WHATSAPP
+    // ========== SISTEMA DE COMPRAS COM TRACKING ==========
     function comprarProdutoModal(productId) {
       const product = productsData.find(p => p._id === productId);
       if (!product) return;
+      
+      // TRACKING DE CONVERSÃO
+      trackEvent('conversao', 'iniciar_compra', product.nome);
       
       const selectedSize = document.querySelector(`.product [data-product="${productId}"] .size-btn.selected`);
       const tamanho = selectedSize ? selectedSize.textContent : '';
@@ -1737,7 +2383,7 @@
       mensagem += `*Produto:* ${product.nome}\n`;
       if (tamanho) mensagem += `*Tamanho:* ${tamanho}\n`;
       mensagem += `\n_Gostaria de comprar este produto!_\n\n`;
-      mensagem += `_Por favor, informe as informacoes para pagamento e entrega._`;
+      mensagem += `_Por favor, informe as informações para pagamento e entrega._`;
       
       const url = `https://wa.me/5594992936856?text=${encodeURIComponent(mensagem)}`;
       window.open(url, '_blank');
@@ -1749,24 +2395,156 @@
       const product = productsData.find(p => p._id === currentProductForPurchase);
       if (!product) return;
       
+      trackEvent('conversao', 'comprar_detalhes', product.nome);
+      
       let mensagem = `COMPRA - NELMA MODAS\n\n`;
       mensagem += `*Produto:* ${product.nome}\n`;
       mensagem += `\n_Gostaria de comprar este produto!_\n\n`;
-      mensagem += `_Por favor, informe as informacoes para pagamento e entrega._`;
+      mensagem += `_Por favor, informe as informações para pagamento e entrega._`;
       
       const url = `https://wa.me/5594992936856?text=${encodeURIComponent(mensagem)}`;
       window.open(url, '_blank');
     }
 
-    // CONFIGURACAO DE EVENT LISTENERS
+    // ========== SISTEMA DE FAVORITOS ==========
+    function toggleFavorite(productId) {
+      const index = favorites.indexOf(productId);
+      
+      if (index === -1) {
+        favorites.push(productId);
+        showToast('Produto adicionado aos favoritos!');
+        trackEvent('favoritos', 'adicionar', productId);
+      } else {
+        favorites.splice(index, 1);
+        showToast('Produto removido dos favoritos!');
+        trackEvent('favoritos', 'remover', productId);
+      }
+      
+      localStorage.setItem('nelma_favorites', JSON.stringify(favorites));
+      updateFavoriteButton(productId);
+      
+      if (currentView === 'favorites') {
+        renderFavorites();
+      }
+    }
+
+    function updateFavoriteButton(productId) {
+      const isFavorite = favorites.includes(productId);
+      const btn = document.querySelector(`.favorite-btn[onclick="toggleFavorite('${productId}')"]`);
+      
+      if (btn) {
+        btn.classList.toggle('active', isFavorite);
+        btn.innerHTML = `<i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>`;
+        btn.setAttribute('aria-label', isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+      }
+    }
+
+    function renderFavorites() {
+      const favoritesList = document.getElementById('favoritesList');
+      const favoritesSection = document.getElementById('favoritesSection');
+      
+      if (!favoritesList || !favoritesSection) return;
+      
+      const favoriteProducts = productsData.filter(p => favorites.includes(p._id));
+      
+      if (favoriteProducts.length === 0) {
+        favoritesList.innerHTML = `
+          <div class="favorites-empty">
+            <i class="far fa-heart"></i>
+            <h4>Nenhum produto favoritado</h4>
+            <p>Adicione produtos aos seus favoritos clicando no ícone de coração</p>
+          </div>
+        `;
+        return;
+      }
+      
+      favoritesList.innerHTML = favoriteProducts.map((product, index) => {
+        const tamanhos = Array.isArray(product.tamanhos) ? product.tamanhos : [];
+        const sizeBtns = tamanhos.map(t => 
+          `<button class="size-btn" onclick="selecionarTamanho(this)">${t}</button>`
+        ).join('');
+        
+        const safeImg = product.mainImage?.startsWith('http') || product.mainImage?.startsWith('data:') 
+          ? product.mainImage 
+          : 'https://via.placeholder.com/600x800/ef8184/ffffff?text=Produto+Nelma+Modas';
+        
+        return `
+          <div class="product" style="animation-delay: ${index * 0.1}s">
+            <span class="status ${product.status}">
+              ${product.status === 'disponivel' ? 'Disponível' : product.status === 'sobpedido' ? 'Sob Pedido' : 'Promoção'}
+            </span>
+            <button class="favorite-btn active" onclick="toggleFavorite('${product._id}')" aria-label="Remover dos favoritos">
+              <i class="fas fa-heart"></i>
+            </button>
+            <img src="${safeImg}" alt="${product.nome}" onclick="openDetailModal('${product._id}')" loading="lazy">
+            <h3>${product.nome}</h3>
+            ${product.descricao ? `<p class="product-description">${product.descricao}</p>` : ''}
+            <div class="size-options">${sizeBtns}</div>
+            <div class="btns">
+              <button class="btn btn-comprar" onclick="comprarProdutoModal('${product._id}')">
+                <i class="fab fa-whatsapp"></i> Comprar Agora
+              </button>
+              <button class="btn" onclick="openDetailModal('${product._id}')">
+                <i class="fas fa-eye"></i> Ver Detalhes
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const productElements = favoritesList.querySelectorAll('.product');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      productElements.forEach(product => {
+        observer.observe(product);
+      });
+      
+      applyTheme();
+    }
+
+    function toggleFavoritesView() {
+      const productList = document.getElementById('productList');
+      const favoritesSection = document.getElementById('favoritesSection');
+      const toggleFavoritesBtn = document.getElementById('toggleFavorites');
+      
+      if (!productList || !favoritesSection || !toggleFavoritesBtn) return;
+      
+      if (currentView === 'products') {
+        currentView = 'favorites';
+        productList.style.display = 'none';
+        favoritesSection.style.display = 'block';
+        toggleFavoritesBtn.innerHTML = '<i class="fas fa-shopping-bag"></i> Produtos';
+        toggleFavoritesBtn.style.background = '#333';
+        renderFavorites();
+        trackEvent('navegacao', 'ver_favoritos', '');
+      } else {
+        currentView = 'products';
+        productList.style.display = 'grid';
+        favoritesSection.style.display = 'none';
+        toggleFavoritesBtn.innerHTML = '<i class="fas fa-heart"></i> Favoritos';
+        toggleFavoritesBtn.style.background = '#e74c3c';
+        trackEvent('navegacao', 'ver_produtos', '');
+      }
+    }
+
+    // ========== CONFIGURAÇÃO DE EVENT LISTENERS ==========
     function setupEventListeners() {
-      // Busca e filtros
+      // Busca e filtros com debounce
       const searchInput = document.getElementById('searchInput');
       const statusFilter = document.getElementById('statusFilter');
       const categoryFilter = document.getElementById('categoryFilter');
       
       if (searchInput) {
-        searchInput.addEventListener('input', filterAndRenderProducts);
+        searchInput.addEventListener('input', debounce(filterAndRenderProducts, 300));
       }
       
       if (statusFilter) {
@@ -1777,7 +2555,13 @@
         categoryFilter.addEventListener('change', filterAndRenderProducts);
       }
       
-      // Navegacao de produtos
+      // Botão de favoritos
+      const toggleFavoritesBtn = document.getElementById('toggleFavorites');
+      if (toggleFavoritesBtn) {
+        toggleFavoritesBtn.addEventListener('click', toggleFavoritesView);
+      }
+      
+      // Navegação de produtos
       const prevProduct = document.getElementById('prevProduct');
       const nextProduct = document.getElementById('nextProduct');
       
@@ -1785,6 +2569,7 @@
         prevProduct.onclick = function() {
           const productList = document.getElementById('productList');
           if (productList) productList.scrollBy({ left: -350, behavior: 'smooth' });
+          trackEvent('navegacao', 'produtos_anterior', '');
         };
       }
       
@@ -1792,6 +2577,7 @@
         nextProduct.onclick = function() {
           const productList = document.getElementById('productList');
           if (productList) productList.scrollBy({ left: 350, behavior: 'smooth' });
+          trackEvent('navegacao', 'produtos_proximo', '');
         };
       }
       
@@ -1827,8 +2613,11 @@
             updateAdminBannersList();
             updateAdminProductsList();
             updateColorPickers();
+            showToast('Login realizado com sucesso!');
+            trackEvent('admin', 'login', 'sucesso');
           } else {
-            alert('Senha incorreta');
+            showToast('Senha incorreta!', 'error');
+            trackEvent('admin', 'login', 'erro');
           }
         };
       }
@@ -1859,6 +2648,8 @@
           if (adminPassword) {
             adminPassword.value = '';
           }
+          showToast('Logout realizado com sucesso!');
+          trackEvent('admin', 'logout', '');
         };
       }
       
@@ -1868,18 +2659,15 @@
         tab.addEventListener('click', function() {
           const tabId = this.getAttribute('data-tab');
           
-          // Remover classe active de todas as abas
           adminTabs.forEach(t => t.classList.remove('active'));
-          // Adicionar classe active na aba clicada
           this.classList.add('active');
           
-          // Esconder todos os conteudos
           document.querySelectorAll('.admin-tab-content').forEach(content => {
             content.classList.remove('active');
           });
           
-          // Mostrar o conteudo da aba clicada
           document.getElementById(`tab-${tabId}`).classList.add('active');
+          trackEvent('admin', `aba_${tabId}`, '');
         });
       });
       
@@ -1891,6 +2679,37 @@
             cadastrarNewsletter();
           }
         });
+      }
+      
+      // Botão Voltar ao Topo
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          trackEvent('navegacao', 'voltar_topo', '');
+        });
+        
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            backToTopBtn.style.display = 'flex';
+          } else {
+            backToTopBtn.style.display = 'none';
+          }
+          
+          updateProgressBar();
+        });
+      }
+      
+      // Controles do Banner
+      const prevBannerBtn = document.getElementById('prevBanner');
+      const nextBannerBtn = document.getElementById('nextBanner');
+      
+      if (prevBannerBtn) {
+        prevBannerBtn.addEventListener('click', prevBannerSlide);
+      }
+      
+      if (nextBannerBtn) {
+        nextBannerBtn.addEventListener('click', nextBannerSlide);
       }
       
       // Fechar modal ao clicar fora
@@ -1910,7 +2729,7 @@
       initializeCodeSearch();
     }
 
-    // FUNCIONALIDADE DE PESQUISA NO EDITOR DE CÓDIGO
+    // ========== FUNCIONALIDADE DE PESQUISA NO EDITOR DE CÓDIGO ==========
     function initializeCodeSearch() {
         const codeSearchInput = document.getElementById('codeSearchInput');
         const prevMatchBtn = document.getElementById('prevMatchBtn');
@@ -1922,7 +2741,6 @@
 
         if (!codeSearchInput || !codeEditor) return;
 
-        // Função para realizar a busca
         function performSearch() {
             const searchTerm = codeSearchInput.value.trim();
             const code = codeEditor.value;
@@ -1932,10 +2750,8 @@
                 return;
             }
 
-            // Limpar highlights anteriores
             clearHighlights();
 
-            // Encontrar todas as ocorrências
             searchMatches = [];
             const regex = new RegExp(escapeRegExp(searchTerm), 'gi');
             let match;
@@ -1948,7 +2764,6 @@
                 });
             }
 
-            // Atualizar contador
             matchCount.textContent = searchMatches.length;
             searchResults.style.display = searchMatches.length > 0 ? 'block' : 'none';
 
@@ -1960,49 +2775,41 @@
             }
         }
 
-        // Função para escapar caracteres especiais em regex
         function escapeRegExp(string) {
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
-        // Função para limpar highlights
         function clearHighlights() {
             searchMatches = [];
             currentMatchIndex = -1;
             searchResults.style.display = 'none';
         }
 
-        // Função para destacar o match atual
         function highlightCurrentMatch() {
             if (currentMatchIndex < 0 || currentMatchIndex >= searchMatches.length) return;
 
             const match = searchMatches[currentMatchIndex];
             
-            // Focar no editor e selecionar o texto
             codeEditor.focus();
             codeEditor.setSelectionRange(match.start, match.end);
             
-            // Scroll para a posição do match
-            const lineHeight = 16; // Aproximadamente a altura da linha
+            const lineHeight = 16;
             const linesBeforeMatch = codeEditor.value.substring(0, match.start).split('\n').length - 1;
             codeEditor.scrollTop = linesBeforeMatch * lineHeight - 100;
         }
 
-        // Função para navegar para o próximo match
         function nextMatch() {
             if (searchMatches.length === 0) return;
             currentMatchIndex = (currentMatchIndex + 1) % searchMatches.length;
             highlightCurrentMatch();
         }
 
-        // Função para navegar para o match anterior
         function prevMatch() {
             if (searchMatches.length === 0) return;
             currentMatchIndex = (currentMatchIndex - 1 + searchMatches.length) % searchMatches.length;
             highlightCurrentMatch();
         }
 
-        // Event Listeners
         codeSearchInput.addEventListener('input', performSearch);
         codeSearchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -2019,7 +2826,6 @@
             codeEditor.focus();
         });
 
-        // Atalhos de teclado no editor
         codeEditor.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
                 e.preventDefault();
@@ -2043,11 +2849,12 @@
         });
     }
 
-    // FUNCOES GLOBAIS
+    // ========== FUNÇÕES GLOBAIS ==========
     window.selecionarTamanho = function(btn) {
       const productCard = btn.closest('.product');
       productCard.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
+      trackEvent('produto', 'selecionar_tamanho', btn.textContent);
     };
 
     window.openDetailModal = function(id) {
@@ -2058,7 +2865,7 @@
       
       document.getElementById('detailTitle').textContent = p.nome;
       const statusEl = document.getElementById('detailStatus');
-      statusEl.textContent = p.status === 'disponivel' ? 'Disponivel' : p.status === 'sobpedido' ? 'Sob Pedido' : 'Promocao';
+      statusEl.textContent = p.status === 'disponivel' ? 'Disponível' : p.status === 'sobpedido' ? 'Sob Pedido' : 'Promoção';
       statusEl.className = p.status;
       
       const images = p.detailImages?.length ? p.detailImages : [p.mainImage];
@@ -2074,7 +2881,6 @@
         img.alt = `Detalhe ${i+1}`;
         img.onclick = () => {
           mainImg.src = url;
-          // Destacar miniatura ativa
           thumbs.querySelectorAll('img').forEach(thumb => thumb.classList.remove('active'));
           img.classList.add('active');
         };
@@ -2083,6 +2889,7 @@
       });
       
       document.getElementById('detailModal').style.display = 'flex';
+      trackEvent('produto', 'ver_detalhes', p.nome);
     };
 
     window.closeDetailModal = function() {
@@ -2092,8 +2899,9 @@
       currentProductForPurchase = null;
     };
 
-    // PAINEL ADMINISTRATIVO - FUNCOES
-    // ATUALIZAR A FUNCAO updateColorPickers
+    window.toggleFavorite = toggleFavorite;
+
+    // ========== PAINEL ADMINISTRATIVO - FUNÇÕES ==========
     function updateColorPickers() {
       const colorBodyBg = document.getElementById('colorBodyBg');
       const colorHeaderBg = document.getElementById('colorHeaderBg');
@@ -2136,18 +2944,19 @@
         if (colorSobpedidoBg) theme.sobpedidoBg = colorSobpedidoBg.value;
         if (colorSelectedSize) theme.selectedSizeColor = colorSelectedSize.value;
         
-        // USAR BANCO 1 PARA TEMA
         if (!db1) {
-          alert('Erro de conexao. Tente novamente.');
+          alert('Erro de conexão. Tente novamente.');
           return;
         }
         
         try {
           await db1.collection('config').doc('theme').set(theme);
-          alert('Cores salvas com sucesso!');
+          showToast('Cores salvas com sucesso!');
           applyTheme();
+          trackEvent('admin', 'salvar_cores', 'sucesso');
         } catch (error) {
-          alert('Erro ao salvar cores: ' + error.message);
+          showToast('Erro ao salvar cores: ' + error.message, 'error');
+          trackEvent('admin', 'salvar_cores', 'erro');
         }
       };
     }
@@ -2185,7 +2994,7 @@
         
         const url = cropInput.value.trim();
         if (!url || !url.startsWith('http')) {
-          alert('URL invalida');
+          showToast('URL inválida', 'error');
           return;
         }
         
@@ -2228,7 +3037,7 @@
     if (cropDoneBtn) {
       cropDoneBtn.onclick = function() {
         if (!cropper) {
-          alert('Carregue uma imagem primeiro');
+          showToast('Carregue uma imagem primeiro', 'error');
           return;
         }
         
@@ -2254,17 +3063,20 @@
           outputField.style.display = 'block';
           copyBtn.style.display = 'block';
           
-          // Preencher automaticamente no campo de imagem principal
           const mainImageURL = document.getElementById('mainImageURL');
           if (mainImageURL) {
             mainImageURL.value = dataUrl;
           }
           
-          statusText.textContent = 'Corte concluido com sucesso!';
+          statusText.textContent = 'Corte concluído com sucesso!';
           statusText.style.color = '#0f0';
+          showToast('Imagem cortada com sucesso!');
+          trackEvent('admin', 'cortar_imagem', 'sucesso');
         } catch (e) {
           statusText.textContent = 'Erro: ' + e.message;
           statusText.style.color = '#f00';
+          showToast('Erro ao cortar imagem: ' + e.message, 'error');
+          trackEvent('admin', 'cortar_imagem', 'erro');
         }
       };
     }
@@ -2300,11 +3112,12 @@
         
         outputField.select();
         document.execCommand('copy');
-        alert('URL copiada para a area de transferencia!');
+        showToast('URL copiada para a área de transferência!');
+        trackEvent('admin', 'copiar_url', 'sucesso');
       };
     }
 
-    // EDITOR DE CODIGO (BANCO 2)
+    // EDITOR DE CÓDIGO (BANCO 2)
     const loadCodeBtn = document.getElementById('loadCodeBtn');
     if (loadCodeBtn) {
       loadCodeBtn.onclick = function() {
@@ -2315,15 +3128,19 @@
           
           const codeStatus = document.getElementById('codeStatus');
           if (codeStatus) {
-            codeStatus.textContent = 'Codigo carregado com sucesso!';
+            codeStatus.textContent = 'Código carregado com sucesso!';
             codeStatus.style.color = '#0f0';
           }
+          showToast('Código carregado com sucesso!');
+          trackEvent('admin', 'carregar_codigo', 'sucesso');
         } catch (e) {
           const codeStatus = document.getElementById('codeStatus');
           if (codeStatus) {
             codeStatus.textContent = 'Erro: ' + e.message;
             codeStatus.style.color = '#f00';
           }
+          showToast('Erro ao carregar código: ' + e.message, 'error');
+          trackEvent('admin', 'carregar_codigo', 'erro');
         }
       };
     }
@@ -2336,7 +3153,7 @@
         
         const code = codeEditor.value;
         if (!code.trim()) {
-          alert('Codigo vazio');
+          showToast('Código vazio', 'error');
           return;
         }
         
@@ -2347,9 +3164,11 @@
         
         const codeStatus = document.getElementById('codeStatus');
         if (codeStatus) {
-          codeStatus.textContent = 'Codigo testado em nova aba!';
+          codeStatus.textContent = 'Código testado em nova aba!';
           codeStatus.style.color = '#0f0';
         }
+        showToast('Código testado em nova aba!');
+        trackEvent('admin', 'testar_codigo', 'sucesso');
       };
     }
 
@@ -2369,24 +3188,22 @@
         const changes = versionChanges.value.trim();
         
         if (!code || !num || !name || !changes) {
-          alert('Preencha todos os campos!');
+          showToast('Preencha todos os campos!', 'error');
           return;
         }
         
-        // USAR BANCO 2 PARA ATUALIZACOES
         if (!db2) {
-          alert('Erro de conexao com banco de atualizacoes. Tente novamente.');
+          showToast('Erro de conexão com banco de atualizações. Tente novamente.', 'error');
           return;
         }
         
         const codeStatus = document.getElementById('codeStatus');
         if (codeStatus) {
-          codeStatus.textContent = 'Publicando versao...';
+          codeStatus.textContent = 'Publicando versão...';
           codeStatus.style.color = '#ff0';
         }
         
         try {
-          // Salvar no Banco 2
           const versionRef = await db2.collection('siteVersions').add({
             number: num,
             name: name,
@@ -2403,17 +3220,19 @@
           });
           
           if (codeStatus) {
-            codeStatus.textContent = `Versao ${num} publicada com sucesso!`;
+            codeStatus.textContent = `Versão ${num} publicada com sucesso!`;
             codeStatus.style.color = '#0f0';
           }
           
-          // Limpar campos
           newVersionNum.value = '';
           newVersionName.value = '';
           versionChanges.value = '';
           
+          showToast(`Versão ${num} publicada com sucesso!`);
+          trackEvent('admin', 'publicar_versao', num);
+          
           setTimeout(() => {
-            if (confirm(`Versao ${num} publicada com sucesso!\n\nDeseja recarregar o site agora?`)) {
+            if (confirm(`Versão ${num} publicada com sucesso!\n\nDeseja recarregar o site agora?`)) {
               localStorage.setItem('siteVersion', num);
               location.reload();
             }
@@ -2424,6 +3243,8 @@
             codeStatus.textContent = 'Erro: ' + e.message;
             codeStatus.style.color = '#f00';
           }
+          showToast('Erro ao publicar versão: ' + e.message, 'error');
+          trackEvent('admin', 'publicar_versao', 'erro');
         }
       };
     }
@@ -2447,13 +3268,12 @@
         const detailImages = detailImagesURL.value.split(',').map(s => s.trim()).filter(s => s.startsWith('http') || s.startsWith('data:'));
         
         if (!nome || !mainImage) {
-          alert('Preencha nome e imagem do produto');
+          showToast('Preencha nome e imagem do produto', 'error');
           return;
         }
         
-        // USAR BANCO 1 PARA PRODUTOS
         if (!db1) {
-          alert('Erro de conexao. Tente novamente.');
+          showToast('Erro de conexão. Tente novamente.', 'error');
           return;
         }
         
@@ -2467,13 +3287,13 @@
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
           });
           
-          alert('Produto adicionado com sucesso!');
+          showToast('Produto adicionado com sucesso!');
+          trackEvent('admin', 'adicionar_produto', 'sucesso');
           ['productName', 'productSizes', 'mainImageURL', 'detailImagesURL'].forEach(id => {
             const element = document.getElementById(id);
             if (element) element.value = '';
           });
           
-          // Fechar cortador se estiver aberto
           const cropTool = document.getElementById('imageCropper');
           if (cropTool) cropTool.style.display = 'none';
           if (cropper) {
@@ -2481,7 +3301,8 @@
             cropper = null;
           }
         } catch (error) {
-          alert('Erro ao adicionar produto: ' + error.message);
+          showToast('Erro ao adicionar produto: ' + error.message, 'error');
+          trackEvent('admin', 'adicionar_produto', 'erro');
         }
       };
     }
@@ -2498,9 +3319,9 @@
         div.innerHTML = `
           <input type="text" value="${p.nome}" id="editName_${p._id}" placeholder="Nome">
           <select id="editStatus_${p._id}">
-            <option value="disponivel" ${p.status === 'disponivel' ? 'selected' : ''}>Disponivel</option>
+            <option value="disponivel" ${p.status === 'disponivel' ? 'selected' : ''}>Disponível</option>
             <option value="sobpedido" ${p.status === 'sobpedido' ? 'selected' : ''}>Sob Pedido</option>
-            <option value="promocao" ${p.status === 'promocao' ? 'selected' : ''}>Promocao</option>
+            <option value="promocao" ${p.status === 'promocao' ? 'selected' : ''}>Promoção</option>
           </select>
           <input type="text" value="${Array.isArray(p.tamanhos) ? p.tamanhos.join(', ') : ''}" id="editSizes_${p._id}" placeholder="P, M, G">
           <button onclick="saveProduct('${p._id}')" style="background: #27ae60;">
@@ -2526,38 +3347,40 @@
       const tamanhos = sizesInput.value.split(',').map(s => s.trim()).filter(Boolean);
       
       if (!nome) {
-        alert('Nome obrigatorio');
+        showToast('Nome obrigatório', 'error');
         return;
       }
       
-      // USAR BANCO 1 PARA PRODUTOS
       if (!db1) {
-        alert('Erro de conexao. Tente novamente.');
+        showToast('Erro de conexão. Tente novamente.', 'error');
         return;
       }
       
       try {
         await db1.collection('produtos').doc(id).update({ nome, status, tamanhos });
-        alert('Produto atualizado com sucesso!');
+        showToast('Produto atualizado com sucesso!');
+        trackEvent('admin', 'atualizar_produto', 'sucesso');
       } catch (error) {
-        alert('Erro ao atualizar produto: ' + error.message);
+        showToast('Erro ao atualizar produto: ' + error.message, 'error');
+        trackEvent('admin', 'atualizar_produto', 'erro');
       }
     };
 
     window.deleteProduct = async function(id, nome) {
       if (!confirm(`Excluir o produto "${nome}"?`)) return;
       
-      // USAR BANCO 1 PARA PRODUTOS
       if (!db1) {
-        alert('Erro de conexao. Tente novamente.');
+        showToast('Erro de conexão. Tente novamente.', 'error');
         return;
       }
       
       try {
         await db1.collection('produtos').doc(id).delete();
-        alert('Produto excluido com sucesso!');
+        showToast('Produto excluído com sucesso!');
+        trackEvent('admin', 'excluir_produto', 'sucesso');
       } catch (error) {
-        alert('Erro ao excluir produto: ' + error.message);
+        showToast('Erro ao excluir produto: ' + error.message, 'error');
+        trackEvent('admin', 'excluir_produto', 'erro');
       }
     };
 
@@ -2571,22 +3394,23 @@
         const urls = bannerImagesURL.value.split(',').map(s => s.trim()).filter(s => s.startsWith('http') || s.startsWith('data:'));
         
         if (!urls.length) {
-          alert('Insira ao menos uma URL valida');
+          showToast('Insira ao menos uma URL válida', 'error');
           return;
         }
         
-        // USAR BANCO 1 PARA BANNERS
         if (!db1) {
-          alert('Erro de conexao. Tente novamente.');
+          showToast('Erro de conexão. Tente novamente.', 'error');
           return;
         }
         
         try {
           await db1.collection('banners').doc('current').set({ urls });
-          alert('Banner atualizado com sucesso!');
+          showToast('Banner atualizado com sucesso!');
+          trackEvent('admin', 'atualizar_banner', 'sucesso');
           bannerImagesURL.value = '';
         } catch (error) {
-          alert('Erro ao atualizar banner: ' + error.message);
+          showToast('Erro ao atualizar banner: ' + error.message, 'error');
+          trackEvent('admin', 'atualizar_banner', 'erro');
         }
       };
     }
@@ -2615,9 +3439,8 @@
       
       const newUrls = bannerImages.filter((_, idx) => idx !== i);
       
-      // USAR BANCO 1 PARA BANNERS
       if (!db1) {
-        alert('Erro de conexao. Tente novamente.');
+        showToast('Erro de conexão. Tente novamente.', 'error');
         return;
       }
       
@@ -2627,21 +3450,29 @@
         } else {
           await db1.collection('banners').doc('current').delete();
         }
-        alert('Banner excluido com sucesso!');
+        showToast('Banner excluído com sucesso!');
+        trackEvent('admin', 'excluir_banner', 'sucesso');
       } catch (error) {
-        alert('Erro ao excluir banner: ' + error.message);
+        showToast('Erro ao excluir banner: ' + error.message, 'error');
+        trackEvent('admin', 'excluir_banner', 'erro');
       }
     };
 
     // TRATAMENTO DE ERROS GLOBAIS
     window.addEventListener('error', function(e) {
       console.error('Erro global:', e.error);
+      trackEvent('erro', 'global', e.error.toString());
     });
 
     // ZOOM NA IMAGEM PRINCIPAL
     document.getElementById('detailMainImage').onclick = function(e) {
       e.target.classList.toggle('zoomed');
     };
+
+    // INICIALIZAR FIREBASE SE AINDA NÃO INICIALIZADO
+    if (typeof firebase !== 'undefined' && !db1) {
+      initializeFirebase();
+    }
   </script>
 </body>
 </html>
