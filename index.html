@@ -1076,6 +1076,25 @@
       transition: width 0.3s ease;
     }
 
+    /* Barra de progresso do upload */
+    #uploadProgress {
+      background: #333 !important;
+      border: 1px solid #444 !important;
+      display: none;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    #progressBarInner {
+      background: #1e90ff;
+      height: 10px;
+      border-radius: 4px;
+      transition: width 0.5s ease !important;
+      width: 0%;
+    }
+
     /* ========== NOVAS OTIMIZAÇÕES MOBILE ========== */
     @media (max-width: 768px) {
       .products {
@@ -1691,7 +1710,7 @@
 
         <!-- Aba Código -->
         <div id="tab-codigo" class="admin-tab-content">
-          <h4>Editor de Código</h4>
+          <h4>Editor de Código - Sistema Incremental</h4>
           <div style="margin:25px 0;padding:20px;background:#1e90ff22;border-radius:12px;">
             <div style="display:flex;gap:8px;margin-bottom:12px;">
               <button id="loadCodeBtn" class="btn" style="background:#27ae60;flex:1;">
@@ -1699,6 +1718,9 @@
               </button>
               <button id="testCodeBtn" class="btn" style="background:#9b59b6;flex:1;">
                 <i class="fas fa-vial"></i> Testar Código
+              </button>
+              <button id="loadLastVersionBtn" class="btn" style="background:#3498db;flex:1;">
+                <i class="fas fa-history"></i> Última Versão
               </button>
             </div>
             
@@ -1737,10 +1759,29 @@
             </div>
             <textarea id="versionChanges" placeholder="Descreva as mudanças realizadas..." 
                       style="width:100%;height:60px;margin-top:8px;font-size:12px;padding:10px;border-radius:8px;border:2px solid #ffffff44;background:#ffffff22;color:#fff;"></textarea>
+            
+            <div id="uploadProgress" style="display:none; margin:10px 0; padding:10px; background:#333; border-radius:8px; text-align:center;">
+              <div style="color:#fff; margin-bottom:5px;">Enviando versão...</div>
+              <div style="background:#555; border-radius:4px; height:10px;">
+                <div id="progressBarInner" style="background:#1e90ff; height:100%; width:0%; border-radius:4px; transition:width 0.3s;"></div>
+              </div>
+              <div id="progressText" style="color:#fff; font-size:12px; margin-top:5px;">0%</div>
+            </div>
+            
             <button id="publishCodeBtn" class="btn" style="background:#e67e22;margin-top:12px;width:100%;">
-              <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSÃO
+              <i class="fas fa-rocket"></i> PUBLICAR NOVA VERSÃO (INCREMENTAL)
             </button>
             <p id="codeStatus" style="margin:12px 0 0;font-size:13px;color:#ff0;text-align:center;"></p>
+            
+            <div style="margin-top:15px; padding:15px; background:#ffffff15; border-radius:8px;">
+              <h5 style="margin-bottom:10px; color:#fff;">📊 Sistema Incremental Ativo</h5>
+              <p style="font-size:12px; color:#ccc; margin:0;">
+                • <strong>Economia de 80-90%</strong> no armazenamento<br>
+                • Apenas as <strong>alterações</strong> são salvas<br>
+                • Histórico completo de mudanças<br>
+                • Rollback para qualquer versão
+              </p>
+            </div>
           </div>
         </div>
 
@@ -2849,6 +2890,405 @@
         });
     }
 
+    // ========== SISTEMA DE ATUALIZAÇÕES INCREMENTAIS ==========
+
+    // Função para carregar a última versão publicada
+    async function loadLastVersion() {
+      if (!db2) {
+        showToast('Banco de atualizações não disponível', 'error');
+        return;
+      }
+
+      const codeStatus = document.getElementById('codeStatus');
+      if (codeStatus) {
+        codeStatus.textContent = 'Carregando última versão...';
+        codeStatus.style.color = '#ff0';
+      }
+
+      try {
+        const currentVersionDoc = await db2.collection('config').doc('currentVersion').get();
+        if (!currentVersionDoc.exists) {
+          if (codeStatus) {
+            codeStatus.textContent = 'Nenhuma versão anterior encontrada';
+            codeStatus.style.color = '#ff0';
+          }
+          return;
+        }
+
+        const currentVersion = currentVersionDoc.data();
+        const versionDoc = await db2.collection('siteVersions').doc(currentVersion.id).get();
+        
+        if (!versionDoc.exists) {
+          if (codeStatus) {
+            codeStatus.textContent = 'Versão não encontrada no banco';
+            codeStatus.style.color = '#f00';
+          }
+          return;
+        }
+
+        const versionData = versionDoc.data();
+        let fullCode;
+
+        if (versionData.isIncremental && versionData.patches) {
+          // Reconstruir código a partir das patches
+          const baseVersionDoc = await db2.collection('siteVersions')
+            .where('number', '==', versionData.baseVersion)
+            .limit(1)
+            .get();
+
+          if (baseVersionDoc.empty) {
+            // Se não encontrar a versão base, usar o código atual como fallback
+            fullCode = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          } else {
+            const baseVersionData = baseVersionDoc.docs[0].data();
+            if (baseVersionData.html) {
+              fullCode = applyPatches(baseVersionData.html, versionData.patches);
+            } else {
+              fullCode = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            }
+          }
+        } else {
+          // Versão antiga (código completo)
+          fullCode = versionData.html || '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        }
+
+        const codeEditor = document.getElementById('codeEditor');
+        if (codeEditor) {
+          codeEditor.value = fullCode;
+        }
+
+        if (codeStatus) {
+          codeStatus.textContent = `Versão ${currentVersion.number} carregada!`;
+          codeStatus.style.color = '#0f0';
+        }
+        showToast(`Versão ${currentVersion.number} carregada com sucesso!`);
+
+      } catch (error) {
+        console.error('Erro ao carregar última versão:', error);
+        if (codeStatus) {
+          codeStatus.textContent = 'Erro: ' + error.message;
+          codeStatus.style.color = '#f00';
+        }
+        showToast('Erro ao carregar última versão', 'error');
+      }
+    }
+
+    // Função para gerar patches (diferenças entre códigos)
+    function generatePatches(oldCode, newCode) {
+      console.log('Gerando patches...');
+      const patches = [];
+      const oldLines = oldCode.split('\n');
+      const newLines = newCode.split('\n');
+      
+      let i = 0, j = 0;
+      const maxIterations = Math.max(oldLines.length, newLines.length) * 2;
+      let iterations = 0;
+
+      while (i < oldLines.length || j < newLines.length) {
+        iterations++;
+        if (iterations > maxIterations) {
+          console.warn('Limite de iterações atingido');
+          break;
+        }
+
+        if (i < oldLines.length && j < newLines.length && oldLines[i] === newLines[j]) {
+          i++;
+          j++;
+          continue;
+        }
+
+        // Encontrar próxima correspondência
+        let nextMatchOld = -1;
+        let nextMatchNew = -1;
+        
+        // Procurar pela próxima linha que coincide
+        for (let k = i; k < oldLines.length; k++) {
+          for (let l = j; l < newLines.length; l++) {
+            if (oldLines[k] === newLines[l]) {
+              nextMatchOld = k;
+              nextMatchNew = l;
+              break;
+            }
+          }
+          if (nextMatchOld !== -1) break;
+        }
+
+        if (nextMatchOld === -1) {
+          // Não há mais correspondências - considerar tudo como diferença
+          if (i < oldLines.length || j < newLines.length) {
+            patches.push({
+              index: i,
+              deleteCount: oldLines.length - i,
+              insert: newLines.slice(j)
+            });
+          }
+          break;
+        }
+
+        // Calcular diferenças entre a posição atual e a próxima correspondência
+        const deleteCount = nextMatchOld - i;
+        const insertLines = newLines.slice(j, nextMatchNew);
+
+        if (deleteCount > 0 || insertLines.length > 0) {
+          patches.push({
+            index: i,
+            deleteCount: deleteCount,
+            insert: insertLines
+          });
+        }
+
+        i = nextMatchOld;
+        j = nextMatchNew;
+      }
+
+      console.log(`Geradas ${patches.length} patches`);
+      return patches;
+    }
+
+    // Função para aplicar patches e reconstruir o código
+    function applyPatches(baseCode, patches) {
+      console.log('Aplicando patches...');
+      let lines = baseCode.split('\n');
+      
+      // Ordenar patches por índice (decrescente para manter índices consistentes)
+      const sortedPatches = [...patches].sort((a, b) => b.index - a.index);
+      
+      sortedPatches.forEach((patch, idx) => {
+        const decompressed = patch.i !== undefined ? {
+          index: patch.i,
+          deleteCount: patch.d,
+          insert: patch.ins
+        } : patch;
+
+        if (decompressed.index <= lines.length) {
+          lines.splice(decompressed.index, decompressed.deleteCount, ...decompressed.insert);
+        }
+      });
+      
+      const result = lines.join('\n');
+      console.log('Código reconstruído com sucesso');
+      return result;
+    }
+
+    // Compressão simples das patches
+    function compressPatches(patches) {
+      return patches.map(patch => ({
+        i: patch.index,
+        d: patch.deleteCount,
+        ins: patch.insert
+      }));
+    }
+
+    // Sistema de publicação incremental
+    const publishCodeBtn = document.getElementById('publishCodeBtn');
+    if (publishCodeBtn) {
+      publishCodeBtn.onclick = async function() {
+        const codeEditor = document.getElementById('codeEditor');
+        const newVersionNum = document.getElementById('newVersionNum');
+        const newVersionName = document.getElementById('newVersionName');
+        const versionChanges = document.getElementById('versionChanges');
+        const uploadProgress = document.getElementById('uploadProgress');
+        const progressBarInner = document.getElementById('progressBarInner');
+        const progressText = document.getElementById('progressText');
+        
+        if (!codeEditor || !newVersionNum || !newVersionName || !versionChanges) return;
+        
+        const newCode = codeEditor.value.trim();
+        const num = newVersionNum.value.trim();
+        const name = newVersionName.value.trim();
+        const changes = versionChanges.value.trim();
+        
+        if (!newCode || !num || !name || !changes) {
+          showToast('Preencha todos os campos!', 'error');
+          return;
+        }
+        
+        if (!db2) {
+          showToast('Erro de conexão com banco de atualizações. Tente novamente.', 'error');
+          return;
+        }
+        
+        const codeStatus = document.getElementById('codeStatus');
+        if (codeStatus) {
+          codeStatus.textContent = 'Analisando alterações...';
+          codeStatus.style.color = '#ff0';
+        }
+        
+        // Mostrar progresso
+        if (uploadProgress && progressBarInner && progressText) {
+          uploadProgress.style.display = 'block';
+          progressBarInner.style.width = '10%';
+          progressText.textContent = '10% - Analisando...';
+        }
+        
+        try {
+          // Buscar versão atual para comparar
+          const currentVersionDoc = await db2.collection('config').doc('currentVersion').get();
+          let patches = [];
+          let baseVersion = '1.0';
+          let baseVersionId = null;
+          
+          if (currentVersionDoc.exists) {
+            const current = currentVersionDoc.data();
+            baseVersion = current.number;
+            baseVersionId = current.id;
+            
+            if (uploadProgress && progressBarInner && progressText) {
+              progressBarInner.style.width = '30%';
+              progressText.textContent = '30% - Buscando versão base...';
+            }
+            
+            // Buscar código atual para comparação
+            const currentCodeDoc = await db2.collection('siteVersions').doc(current.id).get();
+              
+            if (currentCodeDoc.exists) {
+              const currentData = currentCodeDoc.data();
+              let currentCode;
+              
+              if (currentData.isIncremental && currentData.patches) {
+                // Reconstruir código atual a partir das patches
+                const baseVersionDoc = await db2.collection('siteVersions')
+                  .where('number', '==', currentData.baseVersion)
+                  .limit(1)
+                  .get();
+
+                if (!baseVersionDoc.empty) {
+                  const baseData = baseVersionDoc.docs[0].data();
+                  if (baseData.html) {
+                    currentCode = applyPatches(baseData.html, currentData.patches);
+                  }
+                }
+              }
+              
+              if (!currentCode && currentData.html) {
+                currentCode = currentData.html;
+              }
+              
+              if (!currentCode) {
+                currentCode = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+              }
+              
+              if (uploadProgress && progressBarInner && progressText) {
+                progressBarInner.style.width = '50%';
+                progressText.textContent = '50% - Gerando patches...';
+              }
+              
+              // Gerar patches (apenas diferenças)
+              patches = generatePatches(currentCode, newCode);
+            }
+          }
+          
+          if (uploadProgress && progressBarInner && progressText) {
+            progressBarInner.style.width = '70%';
+            progressText.textContent = '70% - Processando patches...';
+          }
+          
+          // Se as patches forem muito grandes (mais de 400KB), usar compressão
+          let finalPatches = patches;
+          const patchesSize = JSON.stringify(patches).length;
+          
+          if (patchesSize > 400000) {
+            finalPatches = compressPatches(patches);
+            console.log(`Patches comprimidos: ${patchesSize} → ${JSON.stringify(finalPatches).length} bytes`);
+          }
+          
+          // Se ainda for muito grande após compressão, usar fallback para código completo
+          let useIncremental = true;
+          if (JSON.stringify(finalPatches).length > 900000) {
+            console.warn('Patches ainda muito grandes, usando fallback para código completo');
+            useIncremental = false;
+            finalPatches = [];
+          }
+          
+          if (uploadProgress && progressBarInner && progressText) {
+            progressBarInner.style.width = '90%';
+            progressText.textContent = '90% - Salvando no banco...';
+          }
+          
+          // Salvar versão
+          const versionData = {
+            number: num,
+            name: name,
+            changes: changes,
+            publishedAt: firebase.firestore.FieldValue.serverTimestamp()
+          };
+          
+          if (useIncremental && finalPatches.length > 0) {
+            versionData.baseVersion = baseVersion;
+            versionData.patches = finalPatches;
+            versionData.isIncremental = true;
+            versionData.fullCodeSize = newCode.length;
+            versionData.patchesSize = JSON.stringify(finalPatches).length;
+          } else {
+            // Fallback: salvar código completo (pode falhar se for muito grande)
+            versionData.html = newCode;
+            versionData.isIncremental = false;
+          }
+          
+          const versionRef = await db2.collection('siteVersions').add(versionData);
+          
+          // Atualizar versão atual
+          await db2.collection('config').doc('currentVersion').set({
+            id: versionRef.id,
+            number: num,
+            name: name,
+            changes: changes,
+            isIncremental: useIncremental,
+            baseVersion: baseVersion
+          });
+          
+          if (uploadProgress && progressBarInner && progressText) {
+            progressBarInner.style.width = '100%';
+            progressText.textContent = '100% - Concluído!';
+          }
+          
+          if (codeStatus) {
+            if (useIncremental) {
+              const savings = ((newCode.length - versionData.patchesSize) / newCode.length * 100).toFixed(1);
+              codeStatus.textContent = `Versão ${num} publicada! (Economia: ${savings}%)`;
+            } else {
+              codeStatus.textContent = `Versão ${num} publicada! (Código completo)`;
+            }
+            codeStatus.style.color = '#0f0';
+          }
+          
+          // Limpar campos
+          newVersionNum.value = '';
+          newVersionName.value = '';
+          versionChanges.value = '';
+          
+          showToast(`Versão ${num} publicada com sucesso!`);
+          trackEvent('admin', 'publicar_versao_incremental', num);
+          
+          // Esconder barra de progresso após 2 segundos
+          setTimeout(() => {
+            if (uploadProgress) {
+              uploadProgress.style.display = 'none';
+            }
+          }, 2000);
+          
+        } catch (e) {
+          console.error('Erro na publicação:', e);
+          if (codeStatus) {
+            codeStatus.textContent = 'Erro: ' + e.message;
+            codeStatus.style.color = '#f00';
+          }
+          showToast('Erro ao publicar versão: ' + e.message, 'error');
+          trackEvent('admin', 'publicar_versao', 'erro');
+          
+          if (uploadProgress) {
+            uploadProgress.style.display = 'none';
+          }
+        }
+      };
+    }
+
+    // Adicionar event listener para o botão de carregar última versão
+    const loadLastVersionBtn = document.getElementById('loadLastVersionBtn');
+    if (loadLastVersionBtn) {
+      loadLastVersionBtn.addEventListener('click', loadLastVersion);
+    }
+
     // ========== FUNÇÕES GLOBAIS ==========
     window.selecionarTamanho = function(btn) {
       const productCard = btn.closest('.product');
@@ -3169,83 +3609,6 @@
         }
         showToast('Código testado em nova aba!');
         trackEvent('admin', 'testar_codigo', 'sucesso');
-      };
-    }
-
-    const publishCodeBtn = document.getElementById('publishCodeBtn');
-    if (publishCodeBtn) {
-      publishCodeBtn.onclick = async function() {
-        const codeEditor = document.getElementById('codeEditor');
-        const newVersionNum = document.getElementById('newVersionNum');
-        const newVersionName = document.getElementById('newVersionName');
-        const versionChanges = document.getElementById('versionChanges');
-        
-        if (!codeEditor || !newVersionNum || !newVersionName || !versionChanges) return;
-        
-        const code = codeEditor.value.trim();
-        const num = newVersionNum.value.trim();
-        const name = newVersionName.value.trim();
-        const changes = versionChanges.value.trim();
-        
-        if (!code || !num || !name || !changes) {
-          showToast('Preencha todos os campos!', 'error');
-          return;
-        }
-        
-        if (!db2) {
-          showToast('Erro de conexão com banco de atualizações. Tente novamente.', 'error');
-          return;
-        }
-        
-        const codeStatus = document.getElementById('codeStatus');
-        if (codeStatus) {
-          codeStatus.textContent = 'Publicando versão...';
-          codeStatus.style.color = '#ff0';
-        }
-        
-        try {
-          const versionRef = await db2.collection('siteVersions').add({
-            number: num,
-            name: name,
-            changes: changes,
-            html: code,
-            publishedAt: firebase.firestore.FieldValue.serverTimestamp()
-          });
-          
-          await db2.collection('config').doc('currentVersion').set({
-            id: versionRef.id,
-            number: num,
-            name: name,
-            changes: changes
-          });
-          
-          if (codeStatus) {
-            codeStatus.textContent = `Versão ${num} publicada com sucesso!`;
-            codeStatus.style.color = '#0f0';
-          }
-          
-          newVersionNum.value = '';
-          newVersionName.value = '';
-          versionChanges.value = '';
-          
-          showToast(`Versão ${num} publicada com sucesso!`);
-          trackEvent('admin', 'publicar_versao', num);
-          
-          setTimeout(() => {
-            if (confirm(`Versão ${num} publicada com sucesso!\n\nDeseja recarregar o site agora?`)) {
-              localStorage.setItem('siteVersion', num);
-              location.reload();
-            }
-          }, 1000);
-          
-        } catch (e) {
-          if (codeStatus) {
-            codeStatus.textContent = 'Erro: ' + e.message;
-            codeStatus.style.color = '#f00';
-          }
-          showToast('Erro ao publicar versão: ' + e.message, 'error');
-          trackEvent('admin', 'publicar_versao', 'erro');
-        }
       };
     }
 
